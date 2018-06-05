@@ -1,0 +1,244 @@
+/* The alert message box */
+
+.universum {
+    opacity: 1;
+}
+
+#floating-panel {
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: 'Roboto', 'sans-serif';
+    line-height: 30px;
+    padding-left: 10px;
+}
+
+#map {
+    width: 2000px;
+    height: 3000px;
+    background: blue;
+    position: absolute;
+    opacity: 0.1;
+    /*add this*/
+    top: 0px;
+    left: 0px;
+    z-index: 39;
+}
+
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    /* Red */
+    color: white;
+    margin-bottom: 15px;
+}
+
+
+/* The close button */
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    font-family: Helvetica, sans-serif;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+/* When moving the mouse over the close button */
+
+.closebtn:hover {
+    color: black;
+}
+
+* Popup container */ .popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+
+/* The actual popup (appears on top) */
+
+.popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+}
+
+
+/* Popup arrow */
+
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s
+}
+
+
+/* Add animation (fade in the popup) */
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+[ {
+    "featureType": "all",
+    "elementType": "all",
+    "stylers": [ {
+        "saturation": "32"
+    }
+    ,
+    {
+        "lightness": "-3"
+    }
+    ,
+    {
+        "visibility": "on"
+    }
+    ,
+    {
+        "weight": "1.18"
+    }
+    ]
+}
+
+,
+{
+    "featureType": "administrative",
+    "elementType": "labels",
+    "stylers": [ {
+        "visibility": "off"
+    }
+    ]
+}
+
+,
+{
+    "featureType": "landscape",
+    "elementType": "labels",
+    "stylers": [ {
+        "visibility": "off"
+    }
+    ]
+}
+
+,
+{
+    "featureType": "landscape.man_made",
+    "elementType": "all",
+    "stylers": [ {
+        "saturation": "-70"
+    }
+    ,
+    {
+        "lightness": "14"
+    }
+    ]
+}
+
+,
+{
+    "featureType": "poi",
+    "elementType": "labels",
+    "stylers": [ {
+        "visibility": "off"
+    }
+    ]
+}
+
+,
+{
+    "featureType": "road",
+    "elementType": "labels",
+    "stylers": [ {
+        "visibility": "off"
+    }
+    ]
+}
+
+,
+{
+    "featureType": "transit",
+    "elementType": "labels",
+    "stylers": [ {
+        "visibility": "off"
+    }
+    ]
+}
+
+,
+{
+    "featureType": "water",
+    "elementType": "all",
+    "stylers": [ {
+        "saturation": "100"
+    }
+    ,
+    {
+        "lightness": "-14"
+    }
+    ]
+}
+
+,
+{
+    "featureType": "water",
+    "elementType": "labels",
+    "stylers": [ {
+        "visibility": "off"
+    }
+    ,
+    {
+        "lightness": "12"
+    }
+    ]
+}
+
+]

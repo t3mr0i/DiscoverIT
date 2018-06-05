@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Geolocation</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- include the core styles -->
+    <link rel="stylesheet" href="alertify.core.css" />
+    <!-- include a theme, can be included into the core instead of 2 separate files -->
+    <link rel="stylesheet" href="alertify.default.css" />
+
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+       * element that contains the map.(53.106733, 8.84503) */
+        
+        #map {
+            height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <script>
+        var universum = {
+            lat: 53.106733,
+            lng: 8.84503
+        };
+
+        //var lat = homeMarker.getPosition().ab;
+        //var lng = homeMarker.getPosition().cb;
+
+        function success(pos) {
+            var crd = pos.coords;
+
+
+            if (crd.latitude > 53.10673 && crd.latitude < 53.10675 && crd.longitude > 8.845 && crd.longitude < 8.8457) {
+                alertify.confirm("You found the universum!", function(e) {
+                    if (e) {
+                        alertify.success("You earned 60 Points.");
+                        alertify.alert("The museum is designed like a whale. The windows should represent its teeths.");
+                        // user clicked "ok"                                } else {
+                        // user clicked "cancel"
+
+                    }
+                });
+            }
+        }
+
+        function error(err) {
+            console.warn("error");
+        }
+
+        navigator.geolocation.getCurrentPosition(success, error);
+
+
+        // Note: This example requires that you consent to location sharing when
+        // prompted by your browser. If you see the error "The Geolocation service
+        // failed.", it means you probably did not give permission for the browser to
+        // locate you.
+
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: universum,
+                zoom: 17
+            });
+            var infoWindow = new google.maps.InfoWindow({
+                map: map
+            });
+
+            var marker = new google.maps.Marker({
+                position: universum,
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    scale: 10
+                },
+                map: map
+            });
+            navigator.geolocation.getCurrentPosition(success, error);
+
+            checkMarker();
+            // Try HTML5 geolocation.
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+
+                        var pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+
+
+                        };
+
+                        /*
+                                                if (lat > 52 && lat < 54 && lng > 7 && lng < 9) {
+                                                    alertify.confirm("You found the universum!", function(e) {
+                                                        if (e) {
+                                                            // user clicked "ok"                                } else {
+                                                            // user clicked "cancel"
+                                                        }
+                                                    });
+                                                }
+                        */
+                        infoWindow.setPosition(pos);
+                        infoWindow.setContent('Location found.');
+                        map.setCenter(pos);
+                        //int lat = 53;
+                        //int lng = 8.8;
+
+                        if (lat > 52 && lat < 54 && lng > 7 && lng < 9) {
+                            alertify.confirm("You found the universum!", function(e) {
+                                if (e) {} else {
+                                    // user clicked "cancel"
+                                }
+                            });
+                        }
+                    },
+                    function() {
+                        handleLocationError(true, infoWindow, map.getCenter());
+                    });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+        }
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                'Error: The Geolocation service failed.' :
+                'Error: Your browser doesn\'t support geolocation.');
+        }
+
+        function customAlert(msg) {
+            var alertDiv = "<div style='position: fixed; top: 20px; left: 20px;'>" + "You found the universum" + "</div>";
+            document.getElementsByTagName('body')[0].appendChild(alertDiv);
+        }
+
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0P18EzZD--ertW6TztEi6cwlhfy_j6Ok&callback=initMap">
+
+
+    </script>
+    <script src="alertify.js"></script>
+</body>
+
+</html>
