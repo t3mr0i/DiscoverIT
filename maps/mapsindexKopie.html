@@ -8,6 +8,7 @@
     <meta charset="utf-8">
     <!-- include the core styles -->
     <link rel="stylesheet" href="style.css" />
+    <script type=" text/javascript " script-name="hammersmith-one " src="http://use.edgefonts.net/hammersmith-one.js "></script>
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -37,30 +38,21 @@
 </head>
 
 <body>
+    <div class="enjoy-css">
+        <p> Your score is 5 </p>
+    </div>
 
-    <div id="map"></div>
+    <div id="map "></div>
     <script>
         var overlay;
         var gooMarker = [];
         var counter = 0;
         var universumMarker;
-        const imageURL = "universum.jpg";
-        const imageURLMaritim = "reef.jpg";
-        const imageURLHaus = "haus.jpg";
+        const imageURL = "universum.jpg ";
+        const imageURLMaritim = "reef.jpg ";
+        const imageURLHaus = "haus.jpg ";
 
-        var partnerMarkers = [{
-                lat: 53.106572,
-                lng: 8.841387,
-                name: "UniversumTest",
-                content: "Our home town and international hub."
-            },
-            {
-                lat: 54,
-                lng: 8,
-                name: "Middle East",
-                content: "Dubai desc"
-            }
-        ]
+
 
 
         var universum = {
@@ -75,111 +67,90 @@
         };
 
         var haus = {
-            //  lat: 53.106572,
-            // lng: 
+            lat: 53.106572,
+            lng:
         };
 
 
-        //universumMarker.setVisible(false);
-
-        /*
-         alertify.confirm("You found the universum!", function(e) {
-                            if (e) {
-                                alertify.success("You earned 60 Points.");
-                                alertify.alert("The museum is designed like a whale. The windows should represent its teeths.");
-                                // user clicked "ok"                                } else {
-                                // user clicked "cancel"
-        */
-        //var lat = homeMarker.getPosition().ab;
-        //var lng = homeMarker.getPosition().cb;
-
+        //Erfolreiches erkennen der Position
         function success(pos) {
             var crd = pos.coords;
 
 
 
             var checked = true;
-            if (crd.latitude > 53.106300 && crd.latitude < 53.106777 && crd.longitude > 8.84300 && crd.longitude < 8.84600 && checked == true) {
-                universumMarker.setVisible(true);
-                checked = false;
-                counter++;
-                gooMarker[0].setVisible(true);
+            //ist die Location innerhalb des Bereiches Universum?
+            if (crd.latitude > 53.106300 && crd.latitude < 53.106777 && crd.longitude > 8.84300 && crd.longitude < 8.84600) {
+
                 showMarkers()
-                /*universumMarker.setVisible(true);
-                universumMarker.setOptions({
-                    'opacity': 0.5
-                })
-                 */
-                //document.getElementById("map").setAttribute("style", "opacity:1; -moz-opacity:1; filter:alpha(opacity=100)");
+                //Gibt Popup Fenster zurück mit Meldung. Sweetalert library
                 swal({
 
-                        title: "CONGRATS!",
-                        text: "You found the Universum!",
-                        icon: "success",
+                        title: "CONGRATS! ",
+                        text: "You found the Universum! ",
+                        icon: "success ",
                         buttons: true,
                     })
                     .then((willDelete) => {
                         if (willDelete) {
 
 
-                            swal("The museum is designed like a whale. The windows should represent its teeths.", {
+                            swal("The museum is designed like a whale. The windows should represent its teeths. ", {
                                 icon: imageURL,
                             });
                         } else {
-                            swal("We granted you 60 points! You found " + counter + " /3 spots in this area already");
+                            swal("We granted you 60 points! You found " + counter + " /3 spots in this area already ");
                         }
                     });
 
             }
-            if (crd.latitude > 53.106800 && crd.latitude < 53.106270 && crd.longitude > 8.841207 && crd.longitude < 8.841437 && checked == true) {
-                checked = false;
+
+            //ist die Location innerhalb des Bereiches Haus am Walde?
+
+            if (crd.latitude > 53.106800 && crd.latitude < 53.106270 && crd.longitude > 8.841207 && crd.longitude < 8.841437) {
+                //Gibt Popup Fenster zurück mit Meldung. Sweetalert library
 
                 swal({
-                        title: "CONGRATS!",
-                        text: "You found the Haus am Walde!",
-                        icon: "success",
+                        title: "CONGRATS! ",
+                        text: "You found the Haus am Walde! ",
+                        icon: "success ",
                         buttons: true,
                     })
                     .then((willDelete) => {
                         if (willDelete) {
 
 
-                            swal("Norddeutsche und internationale Küche, Frühstück und selbstgebackener Kuchen im Backsteinhaus mit Biergarten.", {
+                            swal("Norddeutsche und internationale Küche, Frühstück und selbstgebackener Kuchen im Backsteinhaus mit Biergarten. ", {
                                 icon: imageURLHaus,
                             });
                         } else {
-                            swal("We granted you 40 points! You found " + counter + " /3 spots in this area already");
+                            swal("We granted you 40 points! You found " + counter + " /3 spots in this area already ");
                         }
                     });
 
             }
 
+            //ist die Location innerhalb des Bereiches Leibniz Centre for Marine Tropical Research?
 
 
-            if (crd.latitude > 53.107600 && crd.latitude < 53.108120 && crd.longitude > 8.845700 && crd.longitude < 8.846000 && checked == true) {
-                checked = false;
-                counter++;
-                /*universumMarker.setVisible(true);
-                universumMarker.setOptions({
-                    'opacity': 0.5
-                })
-                 */
-                //document.getElementById("map").setAttribute("style", "opacity:1; -moz-opacity:1; filter:alpha(opacity=100)");
+            if (crd.latitude > 53.107600 && crd.latitude < 53.108120 && crd.longitude > 8.845700 && crd.longitude < 8.846000) {
+                //Gibt Popup Fenster zurück mit Meldung. Sweetalert library
+
                 swal({
-                        title: "CONGRATS!",
-                        text: "You found the Leibniz Centre for Marine Tropical Research!",
-                        icon: "success",
+                        title: "CONGRATS! ",
+                        text: "You found the Leibniz Centre for Marine Tropical Research! ",
+                        icon: "success ",
                         buttons: true,
                     })
                     .then((willDelete) => {
                         if (willDelete) {
 
 
-                            swal("The biggest german science center for ecology of tropic seas and coasts.", {
+                            swal("The biggest german science center for ecology of tropic seas and coasts. ", {
                                 icon: imageURLMaritim,
                             });
                         } else {
-                            swal("We granted you 80 points! You found " + counter + " /3 spots in this area already");
+                            swal("We granted you 80 points! You found " + counter + " /3 spots in this area already ");
                         }
                     });
 
@@ -187,110 +158,110 @@
         }
 
         function error(err) {
-            console.warn("error");
+            console.warn("error ");
         }
+        //Erkennt Position live und erkennt etwa position und führt success aus -> Erkennung und tracking, oder zeigt Fehlermeldung an.
+        // Note: This example requires that you consent to location sharing when
+        // prompted by your browser. If you see the error "The Geolocation service // failed. ", it means you probably did not give permission for the browser to
+        // locate you.
 
         navigator.geolocation.watchPosition(success, error);
 
 
-        // Note: This example requires that you consent to location sharing when
-        // prompted by your browser. If you see the error "The Geolocation service
-        // failed.", it means you probably did not give permission for the browser to
-        // locate you.
-
+        //hier wird die Map aufgebaut. Universum ist Zentrum der View. Danach wird nur die Karte gestyled. Irrelevant.
         function initMap() {
             var map = new google.maps.Map(document.getElementById('map'), {
                 center: universum,
                 zoom: 17,
                 styles: [{
-                        "featureType": "all",
-                        "elementType": "all",
-                        "stylers": [{
-                                "saturation": "32"
+                        "featureType ": "all ",
+                        "elementType ": "all ",
+                        "stylers ": [{
+                                "saturation ": "32 "
                             },
                             {
-                                "lightness": "-3"
+                                "lightness ": "-3 "
                             },
                             {
-                                "visibility": "on"
+                                "visibility ": "on "
                             },
                             {
-                                "weight": "1.18"
+                                "weight ": "1.18 "
                             }
                         ]
                     },
                     {
-                        "featureType": "administrative",
-                        "elementType": "labels",
-                        "stylers": [{
-                            "visibility": "off"
+                        "featureType ": "administrative ",
+                        "elementType ": "labels ",
+                        "stylers ": [{
+                            "visibility ": "off "
                         }]
                     },
                     {
-                        "featureType": "landscape",
-                        "elementType": "labels",
-                        "stylers": [{
-                            "visibility": "off"
+                        "featureType ": "landscape ",
+                        "elementType ": "labels ",
+                        "stylers ": [{
+                            "visibility ": "off "
                         }]
                     },
                     {
-                        "featureType": "landscape.man_made",
-                        "elementType": "all",
-                        "stylers": [{
-                                "saturation": "-70"
+                        "featureType ": "landscape.man_made ",
+                        "elementType ": "all ",
+                        "stylers ": [{
+                                "saturation ": "-70 "
                             },
                             {
-                                "lightness": "14"
+                                "lightness ": "14 "
                             }
                         ]
                     },
                     {
-                        "featureType": "poi",
-                        "elementType": "labels",
-                        "stylers": [{
-                            "visibility": "off"
+                        "featureType ": "poi ",
+                        "elementType ": "labels ",
+                        "stylers ": [{
+                            "visibility ": "off "
                         }]
                     },
                     {
-                        "featureType": "road",
-                        "elementType": "labels",
-                        "stylers": [{
-                            "visibility": "off"
+                        "featureType ": "road ",
+                        "elementType ": "labels ",
+                        "stylers ": [{
+                            "visibility ": "off "
                         }]
                     },
                     {
-                        "featureType": "transit",
-                        "elementType": "labels",
-                        "stylers": [{
-                            "visibility": "off"
+                        "featureType ": "transit ",
+                        "elementType ": "labels ",
+                        "stylers ": [{
+                            "visibility ": "off "
                         }]
                     },
                     {
-                        "featureType": "water",
-                        "elementType": "all",
-                        "stylers": [{
-                                "saturation": "100"
+                        "featureType ": "water ",
+                        "elementType ": "all ",
+                        "stylers ": [{
+                                "saturation ": "100 "
                             },
                             {
-                                "lightness": "-14"
+                                "lightness ": "-14 "
                             }
                         ]
                     },
                     {
-                        "featureType": "water",
-                        "elementType": "labels",
-                        "stylers": [{
-                                "visibility": "off"
+                        "featureType ": "water ",
+                        "elementType ": "labels ",
+                        "stylers ": [{
+                                "visibility ": "off "
                             },
                             {
-                                "lightness": "12"
+                                "lightness ": "12 "
                             }
                         ]
                     }
                 ]
 
             });
-
+            //kann an die Karte bewegen? Nein
             map.setOptions({
                 draggable: false
             });
@@ -299,38 +270,20 @@
             var universumTest = new google.maps.LatLng(53, 8);
 
 
-            for (var i = 0; i < partnerMarkers.length; i++) {
-                gooMarker.push(new google.maps.Marker({
-                    position: new google.maps.LatLng(partnerMarkers[i].lat, partnerMarkers[i].lng),
-                    map: map,
-                    title: partnerMarkers[i].name
-                }));
-            }
 
-            function hideMarkers() {
-                for (var i = 0; i < gooMarker.length; i++) {
-                    gooMarker[i].setVisible(false);
-                }
-            }
 
-            function showMarkers() {
-                for (var i = 0; i < gooMarker.length; i++) {
-                    gooMarker[i].setVisible(true);
-                }
-            }
-
-            //document.getElementById('hidemark').document.ready = hideMarkers;
 
             var infoWindow = new google.maps.InfoWindow({
                 map: map
             });
-            // MARITIM
+            // MARITIM Marker Position wird auf der Map erstellt.
 
             var maritimMarker = new google.maps.Marker({
                 position: maritim,
 
                 map: map
             });
+            //Der Marker bekommt eine Kreisform. Danach Infos wie der Kreis aussehen soll.
             var circle = new google.maps.Circle({
                 map: map,
                 radius: 100, // 10 miles in metres
@@ -344,7 +297,7 @@
             circle.bindTo('center', maritimMarker, 'position');
             navigator.geolocation.watchPosition(success, error);
 
-            // HAUS
+            // Haus Marker Position wird auf der Map erstellt.
 
 
             var hausMarker = new google.maps.Marker({
@@ -352,6 +305,8 @@
 
                 map: map
             });
+            //Der Marker bekommt eine Kreisform. Danach Infos wie der Kreis aussehen soll.
+
             var circle = new google.maps.Circle({
                 map: map,
                 radius: 100, // 10 miles in metres
@@ -364,17 +319,16 @@
             });
             circle.bindTo('center', hausMarker, 'position');
             navigator.geolocation.watchPosition(success, error);
-            // universum
+
+
+            // Universum Marker Position wird auf der Map erstellt.
             var universumMarker = new google.maps.Marker({
                 position: universum,
-
-
-
-
-
-
                 map: map
             });
+
+
+            //Der Marker bekommt eine Kreisform. Danach Infos wie der Kreis aussehen soll.
 
             var circle = new google.maps.Circle({
                 map: map,
@@ -389,7 +343,7 @@
             circle.bindTo('center', universumMarker, 'position');
             navigator.geolocation.watchPosition(success, error);
 
-            // Try HTML5 geolocation.
+            //ab hier einfach nur google maps API. Nicht relevant. Habe ich bereits alles angepasst.
             if (navigator.geolocation) {
                 navigator.geolocation.watchPosition(function(position) {
 
@@ -429,6 +383,15 @@
             document.getElementsByTagName('body')[0].appendChild(alertDiv);
         }
 
+        function getScore() {
+            swal({
+                title: "Your Score is now!",
+                text: counter + " Points",
+                icon: "success",
+                buttons: true,
+            });
+        }
+
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0P18EzZD--ertW6TztEi6cwlhfy_j6Ok&callback=initMap">
 
@@ -437,10 +400,7 @@
     <script src="alertify.js"></script>
 
     <!-- Add an input button to initiate the toggle method on the overlay. -->
-    <div id="floating-panel">
-        <input type="button" value="Bremen Overview" onclick="overlay.toggle();"></input>
-        <input type="button" value="Check score" onclick="overlay.toggleDOM();"></input>
-    </div>
+
 
 </body>
 

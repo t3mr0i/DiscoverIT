@@ -27,14 +27,19 @@ body::before {
     /*URL to font*/
 }
 
-h1 {}
+@media (max-width: 767px) {
+    .discover {
+        max-height: 70%;
+        max-width: 70%;
+    }
+}
 
 .text {
     padding-top: 10%;
     margin-right: auto;
     width: 50%;
     align-content: center;
-    font-family: 'Verlag';
+    font-family: 'Verlag', helvetica;
     /*a name to be used later*/
     src: url(Verlag-Black.ttf');
     /*URL to font*/
@@ -44,8 +49,8 @@ h1 {}
 
 .discover {
     display: block;
-    max-height: 30%;
-    max-width: 30%;
+    max-height: 40%;
+    max-width: 40%;
 }
 
 
