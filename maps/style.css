@@ -5,8 +5,96 @@
     /*URL to font*/
 }
 
-h1 {}
+.body {
+    width: 100%;
+    height: 100%;
+}
 
+.tester {
+    background-color: #70FF87;
+    border-color: black;
+}
+
+.test {
+    border-color: red;
+    border-width: 20px;
+}
+
+.balkenFarbe {
+    opacity: 1;
+    z-index: 100;
+    color: black;
+    background-color: black;
+    border-color: red;
+    border-width: 50px;
+    z-index: 300;
+}
+
+.test {
+    z-index: 300;
+    padding-left: 0;
+    padding-right: 0;
+    border-color: black;
+    color: #70FF87;
+    border-width: 5px;
+}
+
+.buttonBar {
+    color: #70FF87;
+    z-index: 300;
+}
+
+#myBar {
+    opacity: 1;
+    z-index: 100;
+    padding-left: -10;
+    padding-right: -10;
+    color: #70FF87;
+    border-color: black;
+    border-width: 5px;
+    z-index: 300;
+}
+
+#spotcounter {
+    margin-top: 5px;
+    opacity: 1;
+    font-family: 'Verlag', helvetica;
+    /*a name to be used later*/
+    src: url(Verlag-Black.ttf');
+    /*URL to font*/
+    margin-bottom: 20%;
+    font-size: 30px;
+    color: black;
+    z-index: 9;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.testLayer {
+    background-color: #8cff80;
+    border: 1px solid #3dcf2d;
+    border-radius: 4px;
+    opacity: 1;
+    top: 4%;
+    position: absolute;
+    border-radius: 5px;
+    z-index: 9;
+    border-radius: 5px;
+    -moz-box-shadow: 0 20px 30px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: 0 20px 30px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+    transition: box-shadow .3s ease;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+
+}
 .text {
     padding-top: 10%;
     margin-right: auto;
@@ -14,18 +102,18 @@ h1 {}
     align-content: center;
     font-family: 'Verlag';
     /*a name to be used later*/
+    
     src: url(Verlag-Black.ttf');
     /*URL to font*/
+    
     font-size: 60px;
     margin-bottom: 5%
 }
-
 .discover {
     display: block;
     max-height: 30%;
     max-width: 30%;
 }
-
 
 }
 .enjoy-css {
@@ -73,27 +161,23 @@ h1 {}
     padding: 5px;
     border: 1px solid #999;
     text-align: center;
-    font-family: 'Roboto', 'sans-serif';
+    font-family: 'Roboto',
+    'sans-serif';
     line-height: 30px;
     padding-left: 10px;
 }
 #map {
-    width: 2000px;
-    height: 3000px;
-    background: blue;
-    position: absolute;
-    opacity: 0.8;
+    width: 100%;
+    height: 100%;
     /*add this*/
-    
     top: 0px;
     left: 0px;
-    z-index: 39;
+    z-index: 1;
 }
 .alert {
     padding: 20px;
     background-color: #f44336;
     /* Red */
-    
     color: white;
     margin-bottom: 15px;
 }
@@ -105,7 +189,8 @@ h1 {}
     font-weight: bold;
     float: right;
     font-size: 22px;
-    font-family: Helvetica, sans-serif;
+    font-family: Helvetica,
+    sans-serif;
     line-height: 20px;
     cursor: pointer;
     transition: 0.3s;
@@ -161,7 +246,6 @@ h1 {}
     from {
         opacity: 0;
     }
-    
     to {
         opacity: 1;
     }
@@ -170,128 +254,7 @@ h1 {}
     from {
         opacity: 0;
     }
-    
     to {
         opacity: 1;
     }
 }
-[ {
-    "featureType": "all",
-    "elementType": "all",
-    "stylers": [ {
-        "saturation": "32"
-    }
-    
-    ,
-    {
-        "lightness": "-3"
-    }
-    
-    ,
-    {
-        "visibility": "on"
-    }
-    
-    ,
-    {
-        "weight": "1.18"
-    }
-    
-    ]
-}
-,
-{
-    "featureType": "administrative",
-    "elementType": "labels",
-    "stylers": [ {
-        "visibility": "off"
-    }
-    
-    ]
-}
-,
-{
-    "featureType": "landscape",
-    "elementType": "labels",
-    "stylers": [ {
-        "visibility": "off"
-    }
-    
-    ]
-}
-,
-{
-    "featureType": "landscape.man_made",
-    "elementType": "all",
-    "stylers": [ {
-        "saturation": "-70"
-    }
-    
-    ,
-    {
-        "lightness": "14"
-    }
-    
-    ]
-}
-,
-{
-    "featureType": "poi",
-    "elementType": "labels",
-    "stylers": [ {
-        "visibility": "off"
-    }
-    
-    ]
-}
-,
-{
-    "featureType": "road",
-    "elementType": "labels",
-    "stylers": [ {
-        "visibility": "off"
-    }
-    
-    ]
-}
-,
-{
-    "featureType": "transit",
-    "elementType": "labels",
-    "stylers": [ {
-        "visibility": "off"
-    }
-    
-    ]
-}
-,
-{
-    "featureType": "water",
-    "elementType": "all",
-    "stylers": [ {
-        "saturation": "100"
-    }
-    
-    ,
-    {
-        "lightness": "-14"
-    }
-    
-    ]
-}
-,
-{
-    "featureType": "water",
-    "elementType": "labels",
-    "stylers": [ {
-        "visibility": "off"
-    }
-    
-    ,
-    {
-        "lightness": "12"
-    }
-    
-    ]
-}
-]
