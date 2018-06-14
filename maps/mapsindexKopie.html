@@ -33,6 +33,7 @@
             margin: 0;
             padding: 0;
         }
+
     </style>
 </head>
 
@@ -338,12 +339,12 @@
             var circle = new google.maps.Circle({
                 map: map,
                 radius: 100, // 10 miles in metres
+                fillColor: '#AA0000',
                 strokeColor: '#FF0000',
-                strokeOpacity: 0.8,
+                strokeOpacity: 0.001,
                 strokeWeight: 2,
-                fillColor: '#FF0000',
-                fillOpacity: 0.35,
-                map: map,
+                fillColor: 'green',
+                fillOpacity: 0.1,
             });
             circle.bindTo('center', maritimMarker, 'position');
             navigator.geolocation.watchPosition(success, error);
@@ -442,8 +443,11 @@
                 buttons: true,
             });
         }
+
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0P18EzZD--ertW6TztEi6cwlhfy_j6Ok&callback=initMap">
+
+
     </script>
     <script src="alertify.js"></script>
 
