@@ -325,7 +325,7 @@
             });
 
 
-//ausgegraut über bremen
+            //ausgegraut über bremen
             var bremenOverlay = new google.maps.Polygon({
                 paths: [outerCoords],
                 strokeColor: 'grey',
@@ -363,6 +363,7 @@
             checked = true;
 
             function success(pos) {
+
                 var myLatlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
                 var icon = "navIcon.png"
                 var myLatmarker = new google.maps.Marker({
@@ -372,10 +373,11 @@
                     zIndex: 1
                 });
 
+
                 document.getElementById('spotcounter').innerHTML = "You found " + counter + " out of 3";
 
                 var crd = pos.coords;
-                if (crd.latitude > 53.10633876983105 && crd.latitude < 53.1068 && crd.longitude > 8.84454314469724 && crd.longitude < 8.84504000) {
+                if (crd.latitude > 53.108041 && crd.latitude < 53.108157 && crd.longitude > 8.845440 && crd.longitude < 8.846041) {
 
 
 
@@ -394,7 +396,7 @@
                         //google.maps.event.addDomListener(window, 'load', initialize);
                         universumMarker.setVisible(true)
                         circleUniversum.setVisible(true)
-
+                        alert("test")
                         move();
                         document.getElementById('spotcounter').innerHTML = "You found " + counter + " out of 3";
 
@@ -415,7 +417,7 @@
                                     swal('We granted you 60 points! You found " + ${counter} + "/3 spots in this area already');
                                 }
                             });
-                        //navigator.geolocation.clearWatch(id);
+
                     }
                     if (crd.latitude > 53.106800 && crd.latitude < 53.106270 && crd.longitude > 8.841207 && crd.longitude < 8.841437 && checked == true) {
                         checked = false;
@@ -439,45 +441,47 @@
                             });
                         //navigator.geolocation.clearWatch(id);
                     }
-                }
 
 
-                if (crd.latitude > 53.107600 && crd.latitude < 53.108120 && crd.longitude > 8.845700 && crd.longitude < 8.846000 && checked == true) {
 
-                    map.data.add({
-                        geometry: new google.maps.Data.Polygon([outerCoords,
 
-                            maritimCords
-                        ])
-                    })
-                    checked = false;
+                    if (crd.latitude > 53.107600 && crd.latitude < 53.108120 && crd.longitude > 8.845700 && crd.longitude < 8.846000 && checked == true) {
 
-                    counter++;
-                    console.log("ich war in Leibniz")
+                        map.data.add({
+                            geometry: new google.maps.Data.Polygon([outerCoords,
 
-                    swal({
-                            title: "CONGRATS!",
-                            text: "You found the Leibniz Centre for Marine Tropical Research!",
-                            icon: "success",
-                            buttons: true,
+                                maritimCords
+                            ])
                         })
-                        .then((willDelete) => {
-                            if (willDelete) {
+                        checked = false;
+
+                        counter++;
+                        console.log("ich war in Leibniz")
+
+                        swal({
+                                title: "CONGRATS!",
+                                text: "You found the Leibniz Centre for Marine Tropical Research!",
+                                icon: "success",
+                                buttons: true,
+                            })
+                            .then((willDelete) => {
+                                if (willDelete) {
 
 
-                                swal("The biggest german science center for ecology of tropic seas and coasts.", {
-                                    icon: imageURLMaritim,
-                                });
-                            } else {
-                                swal("We granted you 80 points! You found " + counter + " /3 spots in this area already");
-                            }
-                        });
-                    navigator.geolocation.clearWatch(id);
+                                    swal("The biggest german science center for ecology of tropic seas and coasts.", {
+                                        icon: imageURLMaritim,
+                                    });
+                                } else {
+                                    swal("We granted you 80 points! You found " + counter + " /3 spots in this area already");
+                                }
+                            });
+                        navigator.geolocation.clearWatch(id);
+                    }
                 }
-
-
-                if (crd.latitude > 53.105341 && crd.latitude < 53.105895 && crd.longitude > 8.849484 && crd.longitude < 8.850064) {
+                if (crd.latitude > 53.107950 && crd.latitude < 53.108041 && crd.longitude > 8.851060 && crd.longitude < 8.852326) {
                     map.setCenter(uniwiese);
+                }
+                if (crd.latitude > 53.105341 && crd.latitude < 53.105895 && crd.longitude > 8.849484 && crd.longitude < 8.850064) {
                     navigator.geolocation.clearWatch(id);
                 }
 
@@ -540,7 +544,14 @@
             });
 
 
-
+            var myLatlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+            var icon = "navIcon.png"
+            var myLatmarker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                icon: icon,
+                zIndex: 1
+            });
 
 
             var circleUniversum = new google.maps.Circle({
