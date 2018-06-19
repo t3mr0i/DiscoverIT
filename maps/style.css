@@ -56,13 +56,13 @@
 }
 
 #spotcounter {
-    margin-top: 5px;
+    margin-top: 10px;
     opacity: 1;
     font-family: 'Verlag', helvetica;
     /*a name to be used later*/
     src: url(Verlag-Black.ttf');
     /*URL to font*/
-    margin-bottom: 20%;
+    margin-bottom: 10%;
     font-size: 30px;
     color: black;
     z-index: 9;
@@ -279,63 +279,51 @@
         opacity: 1;
     }
 }
-.sidenav {
-    height: 100%;
-    /* 100% Full-height */
-    width: 0;
-    /* 0 width - change this with JavaScript */
-    position: fixed;
-    /* Stay in place */
-    z-index: 1;
-    /* Stay on top */
-    top: 0;
-    left: 0;
-    background-color: #111;
-    /* Black*/
-    overflow-x: hidden;
-    /* Disable horizontal scroll */
-    padding-top: 60px;
-    /* Place content 60px from the top */
-    transition: 0.5s;
-    /* 0.5 second transition effect to slide in the sidenav */
-}
-
-/* The navigation menu links */
-.sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-}
-
-/* When you mouse over the navigation links, change their color */
-.sidenav a:hover {
-    color: #f1f1f1;
-}
-
-/* Position and style the close button (top right corner) */
-.sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-}
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
     transition: margin-left .5s;
     padding: 20px;
 }
-
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-    .sidenav {
-        padding-top: 15px;
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+    .testLayer {
+        max-height: 5%;
+        background-color: #8cff80;
+        border: 1px solid #3dcf2d;
+        border-radius: 4px;
+        opacity: 1;
+        top: 4%;
+        max-height: 200px;
+        position: absolute;
+        border-radius: 5px;
+        z-index: 9;
+        border-radius: 5px;
+        -moz-box-shadow: 0 20px 30px rgba(0, 0, 0, 0.6);
+        -webkit-box-shadow: 0 20px 30px rgba(0, 0, 0, 0.6);
+        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+        transition: box-shadow .3s ease;
+        position: absolute;
+        top: 15%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%)
     }
-    .sidenav a {
-        font-size: 18px;
+    #spotcounter {
+        margin-top: 10px;
+        opacity: 1;
+        font-family: 'Verlag', helvetica;
+        /*a name to be used later*/
+        
+        src: url(Verlag-Black.ttf');
+        /*URL to font*/
+        
+        margin-bottom: 5%;
+        font-size: 30px;
+        color: black;
+        z-index: 9;
+        padding-right: 20px;
+        padding-left: 20px;
     }
 }
