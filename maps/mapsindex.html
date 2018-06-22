@@ -13,7 +13,7 @@
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
+    <script src="./coordinates.js"></script>
 
     <style>
         /* Always set the map height explicitly to define the size of the div
@@ -69,101 +69,11 @@
 
 
         var im = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
-
-        var universum = {
-            lat: 53.106733,
-            lng: 8.84503
-        };
-
-        var maritim = {
-            lat: 53.108020,
-            lng: 8.845980
-        };
-
-        var haus = {
-            lat: 53.106572,
-            lng: 8.841387
-        };
-
-        //spot2
-        var uniwiese = {
-            lat: 53.106613,
-            lng: 8.849650
-        };
-
-        var uniwiese = {
-            lat: 53.106613,
-            lng: 8.849650
-        };
-
-        var hotelThings = {
-            lat: 53.106068,
-            lng: 8.848359
-        };
-
-        var galileo = {
-            lat: 53.107397,
-            lng: 8.849184
-        };
-
-        var outerCoords = [{
-                lat: 53.057950,
-                lng: 8.816177
-            },
-            {
-                lat: 53.120631,
-                lng: 8.820297
-            },
-            {
-                lat: 53.120817,
-                lng: 8.868027
-            },
-            {
-                lat: 53.062465,
-                lng: 8.868019
-            }
-        ];
-
-        var universumCords = [{
-
-                lat: 53.106465,
-                lng: 8.844368
-            },
-            {
-                lat: 53.106955,
-                lng: 8.844368
-            },
-
-            {
-                lat: 53.106955,
-                lng: 8.845561
-            },
-            {
-                lat: 53.106465,
-                lng: 8.845561
-            },
-        ];
+        //Spots
 
 
-        var maritimCords = [{
 
-                lat: 53.106934,
-                lng: 8.843850
-            },
-            {
-                lat: 53.107797,
-                lng: 8.843850
-            },
 
-            {
-                lat: 53.107772,
-                lng: 8.845625
-            },
-            {
-                lat: 53.107015,
-                lng: 8.845625
-            },
-        ];
 
 
         var citymap = {};
@@ -320,8 +230,6 @@
 
                 var crd = pos.coords;
                 if (crd.latitude > 53.108041 && crd.latitude < 53.108157 && crd.longitude > 8.845440 && crd.longitude < 8.846041) {
-
-
                     map.setCenter(universum);
                     if (crd.latitude > 53.106300 && crd.latitude < 53.106777 && crd.longitude > 8.84300 && crd.longitude < 8.84600 && checked == true) {
 
@@ -427,12 +335,34 @@
                         navigator.geolocation.clearWatch(id);
                     }
                 }
-                if (crd.latitude > 53.107950 && crd.latitude < 53.108041 && crd.longitude > 8.851060 && crd.longitude < 8.852326) {
-                    map.setCenter(uniwiese);
+
+                // center
+                if (crd.latitude > 53.104671 && crd.latitude < 53.109264 && crd.longitude > 8.838371 && crd.longitude < 8.847941) {
+                    map.setCenter(cUni);
                 }
+                // left
+                if (crd.latitude > 53.109264 && crd.latitude < 53.113857 && crd.longitude > 8.838371 && crd.longitude < 8.847941) {
+                    map.setCenter(lUni);
+                }
+                // right
+                if (crd.latitude > 53.100075 && crd.latitude < 53.104671 && crd.longitude > 8.838371 && crd.longitude < 8.847941) {
+                    map.setCenter(rUni);
+                }
+                // top
+                if (crd.latitude > 53.104671 && crd.latitude < 53.109264 && crd.longitude > 8.828801 && crd.longitude < 8.838371) {
+                    map.setCenter(tUni);
+                }
+                // bottom
+                if (crd.latitude > 53.104671 && crd.latitude < 53.109264 && crd.longitude > 8.847941 && crd.longitude < 8.857511) {
+                    map.setCenter(bUni);
+                }
+
+                /* WHAT IS THIS???
+                // this is center = universum
                 if (crd.latitude > 53.105341 && crd.latitude < 53.105895 && crd.longitude > 8.849484 && crd.longitude < 8.850064) {
                     navigator.geolocation.clearWatch(id);
                 }
+                */
 
             }
 
