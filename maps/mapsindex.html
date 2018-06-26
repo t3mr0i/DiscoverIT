@@ -84,6 +84,11 @@
 
         const munte = "Munte.jpg";
 
+        // index 0 = universum, 1 = hausAmWalde, 2 = maritim, 3 = rotary, 4 = spielplatz, 5 = canteenLake, 6 = BuildingGW2,
+        // 7 = library, 8 = kuhgraben, 9 = maxplanckinstitut, 10 = munte
+        // check if spot already visited
+        var isChecked = {false,false,false,false,false,false,false,false,false,false,false};
+
         var im = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
         //Spots
 
@@ -254,14 +259,15 @@
 
 
 
-                var crd = pos.coords;
+
                 if (crd.latitude > 53.104671 && crd.latitude < 53.109264 && crd.longitude > 8.838371 && crd.longitude < 8.847941) {
                     if (counterUniversum == 3) {
                         document.getElementById('spotcounter').innerHTML = "Congrats, you found all the spots on this map";
 
                     }
                     map.setCenter(cUni);
-                    if (crd.latitude > 53.106300 && crd.latitude < 53.106777 && crd.longitude > 8.84300 && crd.longitude < 8.84600 && checked == true) {
+                    if (crd.latitude > 53.106300 && crd.latitude < 53.106777 && crd.longitude > 8.84300 && crd.longitude < 8.84600 && !isChecked[0]) {
+                        isChecked[0] = true;
                         alert("test")
                         if (counterUniversum < 3) {
                             counterUniversum++;
@@ -299,7 +305,8 @@
                             });
 
                     }
-                    if (crd.latitude > 53.106800 && crd.latitude < 53.106270 && crd.longitude > 8.841207 && crd.longitude < 8.841437 && checked == true) {
+                    if (crd.latitude > 53.106800 && crd.latitude < 53.106270 && crd.longitude > 8.841207 && crd.longitude < 8.841437 && !isChecked[1]) {
+                        isChecked[1] = true;
                         if (counterUniversum < 3) {
                             counterUniversum++;
                         }
@@ -328,8 +335,8 @@
 
 
 
-                    if (crd.latitude > 53.107600 && crd.latitude < 53.108120 && crd.longitude > 8.845700 && crd.longitude < 8.846000 && checked == true) {
-
+                    if (crd.latitude > 53.107600 && crd.latitude < 53.108120 && crd.longitude > 8.845700 && crd.longitude < 8.846000 && !isChecked[2]) {
+                        isChecked[2] = true;
                         if (counterUniversum < 3) {
                             counterUniversum++;
                         }
@@ -374,7 +381,8 @@
                     map.setCenter(lUni);
 
                     var crd = pos.coords;
-                    if (crd.latitude > 53.105913 && crd.latitude < 53.106139 && crd.longitude > 8.835800 && crd.longitude < 8.836379 && checkedRotary == true) {
+                    if (crd.latitude > 53.105913 && crd.latitude < 53.106139 && crd.longitude > 8.835800 && crd.longitude < 8.836379 && !isChecked[3]) {
+                        isChecked[3] = true;
                         if (counterlUni == 2) {
                             document.getElementById('spotcounter').innerHTML = "Congrats, you found all the spots on this map";
 
@@ -392,7 +400,6 @@
                             ])
                         })
 
-                        var checkedRotary = false;
 
                         move();
                         document.getElementById('spotcounter').innerHTML = "You found " + counterlUni + " out of 2";
@@ -419,7 +426,8 @@
 
 
                     var crd = pos.coords;
-                    if (crd.latitude > 53.107595 && crd.latitude < 53.108127 && crd.longitude > 8.831118 && crd.longitude < 8.832116 && checkedPlayingGround == true) {
+                    if (crd.latitude > 53.107595 && crd.latitude < 53.108127 && crd.longitude > 8.831118 && crd.longitude < 8.832116 && !isChecked[4]) {
+                        isChecked[4] = true;
                         if (counterlUni == 2) {
                             document.getElementById('spotcounter').innerHTML = "Congrats, you found all the spots on this map";
 
@@ -475,7 +483,8 @@
                         map.setCenter(rUni);
 
                         var crd = pos.coords;
-                        if (crd.latitude > 53.107573 && crd.latitude < 53.107817 && crd.longitude > 8.850052 && crd.longitude < 8.851501 && checkedCanteenLake == true) {
+                        if (crd.latitude > 53.107573 && crd.latitude < 53.107817 && crd.longitude > 8.850052 && crd.longitude < 8.851501 && !isChecked[5]) {
+                            isChecked[5] = true;
                             if (counterRUni == 3) {
                                 document.getElementById('spotcounter').innerHTML = "Congrats, you found all the spots on this map";
 
@@ -493,7 +502,6 @@
                                 ])
                             })
 
-                            var checkedCanteenLake = false;
 
                             move();
                             document.getElementById('spotcounter').innerHTML = "You found " + counterRUni + " out of 3";
@@ -519,7 +527,8 @@
                         }
 
                         var crd = pos.coords;
-                        if (crd.latitude > 53.107669 && crd.latitude < 53.108513 && crd.longitude > 8.853378 && crd.longitude < 8.854237 && checkedUniLibrary == true) {
+                        if (crd.latitude > 53.107669 && crd.latitude < 53.108513 && crd.longitude > 8.853378 && crd.longitude < 8.854237 && !isChecked[6]) {
+                            isChecked[6] = true;
                             if (counterRUni == 3) {
                                 document.getElementById('spotcounter').innerHTML = "Congrats, you found all the spots on this map";
 
@@ -562,7 +571,8 @@
                         }
 
                         var crd = pos.coords;
-                        if (crd.latitude > 53.106429 && crd.latitude < 53.107408 && crd.longitude > 8.853180 && crd.longitude < 8.854521 && checkedBuildingGW2 == true) {
+                        if (crd.latitude > 53.106429 && crd.latitude < 53.107408 && crd.longitude > 8.853180 && crd.longitude < 8.854521 && !isChecked[7]) {
+                            isChecked[7] = true;
                             if (counterRUni == 3) {
                                 document.getElementById('spotcounter').innerHTML = "Congrats, you found all the spots on this map";
 
@@ -580,7 +590,7 @@
                                 ])
                             })
 
-                            var checkedBuildingGW2 = false;
+
 
                             move();
                             document.getElementById('spotcounter').innerHTML = "You found " + counterRUni + " out of 3";
@@ -614,7 +624,8 @@
                         map.setCenter(tUni);
 
                         var crd = pos.coords;
-                        if (crd.latitude > 53.108815 && crd.latitude < 53.109340 && crd.longitude > 8.844010 && crd.longitude < 8.844954 && checkedKuhgraben == true) {
+                        if (crd.latitude > 53.108815 && crd.latitude < 53.109340 && crd.longitude > 8.844010 && crd.longitude < 8.844954 && !isChecked[8]) {
+                            isChecked[8] = true;
                             if (counterTUni == 2) {
                                 document.getElementById('spotcounter').innerHTML = "Congrats, you found all the spots on this map";
 
@@ -657,7 +668,8 @@
                         }
 
                         var crd = pos.coords;
-                        if (crd.latitude > 53.109605 && crd.latitude < 53.109998 && crd.longitude > 8.846694 && crd.longitude < 8.847622 && checkedMaxPlanckInstitut == true) {
+                        if (crd.latitude > 53.109605 && crd.latitude < 53.109998 && crd.longitude > 8.846694 && crd.longitude < 8.847622 && !isChecked[9]) {
+                            isChecked[9] = true;
                             if (counterTUni == 2) {
                                 document.getElementById('spotcounter').innerHTML = "Congrats, you found all the spots on this map";
 
@@ -675,7 +687,6 @@
                                 ])
                             })
 
-                            var checkedMaxPlanckInstitut = false;
 
                             move();
                             document.getElementById('spotcounter').innerHTML = "You found " + counterTUni + " out of 2";
@@ -707,7 +718,8 @@
                         map.setCenter(bUni);
 
                         var crd = pos.coords;
-                        if (crd.latitude > 53.104136 && crd.latitude <  53.104526 && crd.longitude > 8.840827 && crd.longitude < 8.841455 && checkedMunte == true) {
+                        if (crd.latitude > 53.104136 && crd.latitude <  53.104526 && crd.longitude > 8.840827 && crd.longitude < 8.841455 && !isChecked[10]) {
+                            isChecked[10] = true;
                             if (counterBUni == 1) {
                                 document.getElementById('spotcounter').innerHTML = "Congrats, you found all the spots on this map";
 
