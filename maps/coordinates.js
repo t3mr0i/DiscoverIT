@@ -283,27 +283,122 @@ var tUniMaxPlanckInstitutSquare = [{
 
 // marker to center map
 var cUni = {
-    lat: 53.1069675,
-    lng: 8.843156
+    lat: 53.1065845,
+    lng: 8.843579 // new
 };
 var tUni = {
-    lat: 53.1115605,
-    lng: 8.843156
+    lat: 53.1100755,
+    lng: 8.843579 // new
 }
 var bUni = {
-    lat: 53.1023715,
-    lng: 8.843156
+    lat: 53.1030935,
+    lng: 8.843579 //new
 }
 var lUni = {
-    lat: 53.106967,
-    lng: 8.833586
+    lat: 53.1065845,
+    lng: 8.832663
 }
 var rUni = {
-    lat: 53.106967,
-    lng: 8.852726
+    lat: 53.1065845,
+    lng: 8.854495
 }
 
+// map squares if all spots explored
 
+var cUniSquare = [{
+    lat: 53.108330,
+    lng: 8.838121
+},
+    {
+        lat: 53.108330,
+        lng: 8.849037
+    },
+
+    {
+        lat: 53.104839,
+        lng: 8.849037
+    },
+    {
+        lat: 53.104839,
+        lng: 8.838121
+    },
+];
+
+var bUniSquare = [{
+    lat: 53.104839,
+    lng: 8.838121
+},
+    {
+        lat: 53.104839,
+        lng: 8.849037
+    },
+
+    {
+        lat: 53.101348,
+        lng: 8.849037
+    },
+    {
+        lat: 53.101348,
+        lng: 8.838121
+    },
+];
+
+var lUniSquare = [{
+    lat: 53.108330,
+    lng: 8.827205
+},
+    {
+        lat: 53.108330,
+        lng: 8.838121
+    },
+
+    {
+        lat: 53.104839,
+        lng: 8.838121
+    },
+    {
+        lat: 53.104839,
+        lng: 8.827205
+    },
+];
+
+var rUniSquare = [{
+    lat: 53.108330,
+    lng: 8.849037
+},
+    {
+        lat: 53.108330,
+        lng: 8.859953
+    },
+
+    {
+        lat: 53.104839,
+        lng: 8.859953
+    },
+    {
+        lat: 53.104839,
+        lng: 8.849037
+    },
+];
+
+var tUniSquare = [{
+    lat: 53.111821,
+    lng: 8.838121
+},
+    {
+        lat: 53.111821,
+        lng: 8.849037
+    },
+
+    {
+        lat: 53.108330,
+        lng: 8.849037
+    },
+    {
+        lat: 53.108330,
+        lng: 8.838121
+    },
+];
 
 var hotelThings = {
     lat: 53.106068,

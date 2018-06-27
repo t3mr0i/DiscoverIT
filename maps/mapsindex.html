@@ -42,7 +42,8 @@
 
     <div class="testLayer w3-center">
         <p id="spotcounter" class=" w3-center"> </p>
-
+        <p id="scoreID"></p>
+        <p id="cSpotsID"></p>
 
         <div class="w3-progress-container test" style="border-color:red;">
             <div id="myBar" class="w3-progressbar tester" style="width:0%">
@@ -66,6 +67,10 @@
         var counterTUni = 0;
         var counterBUni = 0;
         var universumMarker;
+
+        var score = 0;
+        var cSpots = 0;
+
         const imageURL = "universum.jpg";
         const imageURLMaritim = "reef.jpg";
         const imageURLHaus = "haus.jpg";
@@ -88,6 +93,7 @@
         // 7 = library, 8 = kuhgraben, 9 = maxplanckinstitut, 10 = munte
         // check if spot already visited
         var isChecked = [false,false,false,false,false,false,false,false,false,false,false];
+        var spotScores = [60,40,80,20,25,40,40,35,10,50,100];
         var markers = [];
 
         var im = 'you.png';
@@ -253,7 +259,7 @@
                 map: map
             });
             // MARITIM
-            checked = true;
+
 
 
             function success(pos) {
@@ -277,14 +283,14 @@
 
 
 */
-                if (crd.latitude > 53.104671 && crd.latitude < 53.109264 && crd.longitude > 8.838371 && crd.longitude < 8.847941) {
-                    if (counterUniversum == 3) {
-                        document.getElementById('spotcounter').innerHTML = "Congrats, you found all the spots on this map";
 
-                    }
+                /* ------------------ ------------------ map spot CENTER uni ------------------ ------------------*/
+                if (crd.latitude > 53.104839 && crd.latitude < 53.108330 && crd.longitude > 8.838121 && crd.longitude < 8.849037) {
                     map.setCenter(cUni);
+
                     if (crd.latitude > 53.106300 && crd.latitude < 53.106777 && crd.longitude > 8.84300 && crd.longitude < 8.84600 && !isChecked[0]) {
                         isChecked[0] = true;
+                        cSpots++;
                         if (counterUniversum < 3) {
                             counterUniversum++;
                         }
@@ -312,21 +318,23 @@
                         })
                             .then((willDelete) => {
                                 if (willDelete) {
-                                    swal("The museum is designed like a whale. The windows should represent its teeths.", {
+                                    swal("The museum is designed like a whale. The windows should represent its teeths. We granted you 60 points!", {
                                         icon: imageURL,
                                     });
                                 } else {
-                                    swal('We granted you 60 points! You found " + ${counterUniversum} + "/3 spots in this area already');
+                                    swal('We granted you 60 points! You found" + ${counterUniversum} + "/3 spots in this area already');
+
                                 }
                             });
-
+                        score += spotScores[0];
                     }
-                    if (crd.latitude > 53.106800 && crd.latitude < 53.106270 && crd.longitude > 8.841207 && crd.longitude < 8.841437 && !isChecked[1]) {
+                    if (crd.latitude > 53.106270 && crd.latitude < 53.106800 && crd.longitude > 8.841207 && crd.longitude < 8.841437 && !isChecked[1]) {
                         isChecked[1] = true;
+                        cSpots++;
                         if (counterUniversum < 3) {
                             counterUniversum++;
                         }
-                        checked = false;
+
                         console.log("ich war in Haus");
                         swal({
                             title: "CONGRATS!",
@@ -343,14 +351,17 @@
                                     });
                                 } else {
                                     swal("We granted you 40 points! You found " + counter + " /3 spots in this area already");
+
                                 }
                             });
                         //navigator.geolocation.clearWatch(id);
+                        score += spotScores[1];
                     }
 
 
                     if (crd.latitude > 53.107600 && crd.latitude < 53.108120 && crd.longitude > 8.845700 && crd.longitude < 8.846000 && !isChecked[2]) {
                         isChecked[2] = true;
+                        cSpots++;
                         if (counterUniversum < 3) {
                             counterUniversum++;
                         }
@@ -380,29 +391,34 @@
                                     });
                                 } else {
                                     swal("We granted you 80 points! You found " + counterUniversum + " /3 spots in this area already");
+
                                 }
                             });
                         navigator.geolocation.clearWatch(id);
+                        score += spotScores[2];
+                    }
+                    if (counterUniversum == 3) {
+                        document.getElementById('spotcounter').innerHTML = "Congrats, you found all the spots on this map";
+
+                        map.data.add({
+                            geometry: new google.maps.Data.Polygon([outerCoords,
+                                cUniSquare
+                            ])
+                        });
                     }
                 }
 
-                // center
+                /* ------------------ ------------------ map spot CENTER uni ------------------ ------------------*/
 
 
-                // left
-
-                if (crd.latitude > 53.109264 && crd.latitude < 53.113857 && crd.longitude > 8.838371 && crd.longitude < 8.847941) {
+                /* ------------------ ------------------ map spot left uni ------------------ ------------------*/
+                if (crd.latitude > 53.104839 && crd.latitude < 53.108330 && crd.longitude > 8.827205 && crd.longitude < 8.838121) {
                     map.setCenter(lUni);
 
-                    var crd = pos.coords;
+
                     if (crd.latitude > 53.105913 && crd.latitude < 53.106139 && crd.longitude > 8.835800 && crd.longitude < 8.836379 && !isChecked[3]) {
                         isChecked[3] = true;
-                        if (counterlUni == 2) {
-                            document.getElementById('spotcounter').innerHTML = "Congrats, you found all the spots on this map";
-
-                        }
-
-
+                        cSpots++;
                         if (counterlUni < 2) {
                             counterlUni++;
                         }
@@ -433,19 +449,17 @@
                                     });
                                 } else {
                                     swal('We granted you 20 points! You found ${counterUni} /2 spots in this area already');
+
                                 }
                             });
-
+                        score += spotScores[3];
                     }
 
 
-                    var crd = pos.coords;
+
                     if (crd.latitude > 53.107595 && crd.latitude < 53.108127 && crd.longitude > 8.831118 && crd.longitude < 8.832116 && !isChecked[4]) {
                         isChecked[4] = true;
-                        if (counterlUni == 2) {
-                            document.getElementById('spotcounter').innerHTML = "Congrats, you found all the spots on this map";
-
-                        }
+                        cSpots++;
 
 
                         if (counterlUni < 2) {
@@ -459,7 +473,7 @@
                             ])
                         });
 
-                        var checkedPlayingGround = false;
+
 
                         move();
                         document.getElementById('spotcounter').innerHTML = "You found " + counterlUni + " out of 2";
@@ -478,28 +492,32 @@
                                         icon: spielPLatzIMG,
                                     });
                                 } else {
-                                    swal('We granted you 40 points! You found ${counterUni} /2 spots in this area already');
+                                    swal('We granted you 25 points! You found ${counterUni} /2 spots in this area already');
+
                                 }
                             });
 
+                        score += spotScores[4];
                     }
-
+                    if (counterlUni == 2) {
+                        document.getElementById('spotcounter').innerHTML = "Congrats, you found all the spots on this map";
+                        map.data.add({
+                            geometry: new google.maps.Data.Polygon([outerCoords,
+                                lUniSquare
+                            ])
+                        });
+                    }
                 }
+                /* ------------------ ------------------ map spot left uni ------------------ ------------------*/
 
-
-                // right
-                if (crd.latitude > 53.100075 && crd.latitude < 53.104671 && crd.longitude > 8.838371 && crd.longitude < 8.847941) {
+                /* ------------------ ------------------ map spot right uni ------------------ ------------------*/
+                if (crd.latitude > 53.104839 && crd.latitude < 53.108330 && crd.longitude > 8.849037 && crd.longitude < 8.859953) {
                     map.setCenter(rUni);
 
-                    var crd = pos.coords;
+
                     if (crd.latitude > 53.107573 && crd.latitude < 53.107817 && crd.longitude > 8.850052 && crd.longitude < 8.851501 && !isChecked[5]) {
                         isChecked[5] = true;
-                        if (counterRUni == 3) {
-                            document.getElementById('spotcounter').innerHTML = "Congrats, you found all the spots on this map";
-
-                        }
-
-
+                        cSpots++;
                         if (counterRUni < 3) {
                             counterRUni++;
                         }
@@ -532,16 +550,13 @@
                                     swal('We granted you 40 points! You found ${counterUni} /3 spots in this area already');
                                 }
                             });
-
+                        score += spotScores[5];
                     }
 
-                    var crd = pos.coords;
+
                     if (crd.latitude > 53.107669 && crd.latitude < 53.108513 && crd.longitude > 8.853378 && crd.longitude < 8.854237 && !isChecked[6]) {
                         isChecked[6] = true;
-                        if (counterRUni == 3) {
-                            document.getElementById('spotcounter').innerHTML = "Congrats, you found all the spots on this map";
-
-                        }
+                        cSpots++;
 
 
                         if (counterRUni < 3) {
@@ -555,7 +570,7 @@
                             ])
                         });
 
-                        var checkedUniLibrary = false;
+
 
                         move();
                         document.getElementById('spotcounter').innerHTML = "You found " + counterRUni + " out of 3";
@@ -577,15 +592,13 @@
                                     swal('We granted you 40 points! You found ${counterUni} /3 spots in this area already');
                                 }
                             });
+                        score += spotScores[6];
                     }
 
-                    var crd = pos.coords;
+
                     if (crd.latitude > 53.106429 && crd.latitude < 53.107408 && crd.longitude > 8.853180 && crd.longitude < 8.854521 && !isChecked[7]) {
                         isChecked[7] = true;
-                        if (counterRUni == 3) {
-                            document.getElementById('spotcounter').innerHTML = "Congrats, you found all the spots on this map";
-
-                        }
+                        cSpots++;
 
 
                         if (counterRUni < 3) {
@@ -617,26 +630,30 @@
                                         icon: BuildingGW2,
                                     });
                                 } else {
-                                    swal('We granted you 40 points! You found ${counterUni} /3 spots in this area already');
+                                    swal('We granted you 35 points! You found ${counterUni} /3 spots in this area already');
                                 }
                             });
+                        score += spotScores[7];
                     }
-
+                    if (counterRUni == 3) {
+                        document.getElementById('spotcounter').innerHTML = "Congrats, you found all the spots on this map";
+                        map.data.add({
+                            geometry: new google.maps.Data.Polygon([outerCoords,
+                                rUniSquare
+                            ])
+                        });
+                    }
                 }
+                /* ------------------ ------------------ map spot right uni ------------------ ------------------*/
 
-
-                // top
-                if (crd.latitude > 53.104671 && crd.latitude < 53.109264 && crd.longitude > 8.828801 && crd.longitude < 8.838371) {
+                /* ------------------ ------------------ map spot top uni ------------------ ------------------*/
+                if (crd.latitude > 53.108330 && crd.latitude < 53.111821 && crd.longitude > 8.838121 && crd.longitude < 8.849037) {
                     map.setCenter(tUni);
 
-                    var crd = pos.coords;
+
                     if (crd.latitude > 53.108815 && crd.latitude < 53.109340 && crd.longitude > 8.844010 && crd.longitude < 8.844954 && !isChecked[8]) {
                         isChecked[8] = true;
-                        if (counterTUni == 2) {
-                            document.getElementById('spotcounter').innerHTML = "Congrats, you found all the spots on this map";
-
-                        }
-
+                        cSpots++;
 
                         if (counterTUni < 2) {
                             counterTUni++;
@@ -649,7 +666,6 @@
                             ])
                         });
 
-                        var checkedKuhgraben = false;
 
                         move();
                         document.getElementById('spotcounter').innerHTML = "You found " + counterTUni + " out of 2";
@@ -668,18 +684,17 @@
                                         icon: kuhgraben,
                                     });
                                 } else {
-                                    swal('We granted you 40 points! You found ${counterTUni} /2 spots in this area already');
+                                    swal('We granted you 10 points! You found ${counterTUni} /2 spots in this area already');
                                 }
                             });
+                        score += spotScores[8];
+
                     }
 
-                    var crd = pos.coords;
+
                     if (crd.latitude > 53.109605 && crd.latitude < 53.109998 && crd.longitude > 8.846694 && crd.longitude < 8.847622 && !isChecked[9]) {
                         isChecked[9] = true;
-                        if (counterTUni == 2) {
-                            document.getElementById('spotcounter').innerHTML = "Congrats, you found all the spots on this map";
-
-                        }
+                        cSpots++;
 
 
                         if (counterTUni < 2) {
@@ -711,25 +726,35 @@
                                         icon: maxPlanckInstitut,
                                     });
                                 } else {
-                                    swal('We granted you 40 points! You found ${counterTUni} /2 spots in this area already');
+                                    swal('We granted you 50 points! You found ${counterTUni} /2 spots in this area already');
                                 }
                             });
+                        score += spotScores[9];
+
                     }
+                    if (counterTUni == 2) {
+                        alert('1');
+                        map.data.add({
+                            geometry: new google.maps.Data.Polygon([outerCoords,
+                                tUniSquare
+                            ])
+                        });
+                        document.getElementById('spotcounter').innerHTML = "Congrats, you found all the spots on this map";
+
+                        alert('2');
+                    }
+
                 }
+                /* ------------------ ------------------ map spot top uni ------------------ ------------------*/
 
-
-                // bottom
-                if (crd.latitude > 53.104671 && crd.latitude < 53.109264 && crd.longitude > 8.847941 && crd.longitude < 8.857511) {
+                /* ------------------ ------------------ map spot bottom uni ------------------ ------------------*/
+                if (crd.latitude > 53.101348 && crd.latitude < 53.104839 && crd.longitude > 8.838121 && crd.longitude < 8.849037) {
                     map.setCenter(bUni);
 
-                    var crd = pos.coords;
+
                     if (crd.latitude > 53.104136 && crd.latitude < 53.104526 && crd.longitude > 8.840827 && crd.longitude < 8.841455 && !isChecked[10]) {
                         isChecked[10] = true;
-                        if (counterBUni == 1) {
-                            document.getElementById('spotcounter').innerHTML = "Congrats, you found all the spots on this map";
-
-                        }
-
+                        cSpots++;
 
                         if (counterBUni < 1) {
                             counterBUni++;
@@ -742,11 +767,8 @@
                             ])
                         });
 
-                        var checkedMunte = false;
-
                         move();
                         document.getElementById('spotcounter').innerHTML = "You found " + counterBUni + " out of 1";
-
 
                         swal({
 
@@ -761,12 +783,24 @@
                                         icon: munte,
                                     });
                                 } else {
-                                    swal('We granted you 40 points! You found ${counterBUni} /1 spots in this area already');
+                                    swal('We granted you 100 points! You found ${counterBUni} /1 spots in this area already');
                                 }
                             });
+                        score += spotScores[10];
+                        map.data.add({
+                            geometry: new google.maps.Data.Polygon([outerCoords,
+                                bUniSquare
+                            ])
+                        });
+                        if (counterBUni == 1) {
+                            document.getElementById('spotcounter').innerHTML = "Congrats, you found all the spots on this map";
+
+
+                        }
                     }
 
                 }
+                /* ------------------ ------------------ map spot bottom uni ------------------ ------------------*/
 
                 /* WHAT IS THIS???
                     // this is center = universum
@@ -774,6 +808,10 @@
                         navigator.geolocation.clearWatch(id);
                     }
                     */
+            document.getElementById('scoreID').innerHTML = "Your Score: "+score;
+            document.getElementById('cSpotsID').innerHTML = "You have found "+ cSpots+ " of 11 possible spots";
+
+
 
             }
                 function error(err) {
