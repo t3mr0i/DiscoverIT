@@ -88,8 +88,9 @@
         // 7 = library, 8 = kuhgraben, 9 = maxplanckinstitut, 10 = munte
         // check if spot already visited
         var isChecked = [false,false,false,false,false,false,false,false,false,false,false];
+        var markers = [];
 
-        var im = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
+        var im = 'you.png';
         //Spots
 
         // Note: This example requires that you consent to location sharing when
@@ -97,10 +98,42 @@
         // failed.", it means you probably did not give permission for the browser to
         // locate you.
 
+
+        var userMarker;
+
+        function fail(){
+            alert('navigator.geolocation failed, may not be supported');
+        }
+
         function initMap() {
 
 
-            document.getElementById('spotcounter').innerHTML = "You found " + counterUniversum + " out of 3";
+            navigator.geolocation.watchPosition(initialize,fail);
+
+            function initialize(position) {
+
+               var myLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                //markers.setMap(null);
+                if (!this.marker) {
+                    this.marker = new google.maps.Marker({
+                        position: myLatLng,
+                        map: map,
+                        icon: im
+
+                    });
+                }
+                else {
+                    this.marker.setPosition(myLatLng);
+                }
+
+
+
+
+
+            }
+
+
+            document.getElementById('spotcounter').innerHTML = "You found " + counterUniversum + " out of 3 Spots!";
 
             var map = new google.maps.Map(document.getElementById('map'), {
                 center: universum,
@@ -223,9 +256,12 @@
 
 
             function success(pos) {
+                //this.showPosition(position);
+
                 var crd = pos.coords;
 
                 var myLatlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+                /*
                 var icon = "navIcon.png";
                 var myLatmarker = new google.maps.Marker({
                     position: myLatlng,
@@ -233,8 +269,13 @@
                     icon: icon,
                     zIndex: 1
                 });
+                setTimeout(function(){
+                   myLatmarker.setMap(null);
+                    myLatmarker.setMapOnAll(null);
+                    }, 100000);
 
 
+*/
                 if (crd.latitude > 53.104671 && crd.latitude < 53.109264 && crd.longitude > 8.838371 && crd.longitude < 8.847941) {
                     if (counterUniversum == 3) {
                         document.getElementById('spotcounter').innerHTML = "Congrats, you found all the spots on this map";
@@ -252,11 +293,11 @@
                             geometry: new google.maps.Data.Polygon([outerCoords,
                                 universumCords
                             ])
-                        })
+                        });
 
-                        universumMarker.setVisible(false)
-                        circleUniversum.setVisible(false)
-                        alert("test")
+                        universumMarker.setVisible(false);
+                        circleUniversum.setVisible(false);
+                        alert("test");
                         move();
                         document.getElementById('spotcounter').innerHTML = "You found " + counterUniversum + " out of 3";
 
@@ -285,7 +326,7 @@
                             counterUniversum++;
                         }
                         checked = false;
-                        console.log("ich war in Haus")
+                        console.log("ich war in Haus");
                         swal({
                             title: "CONGRATS!",
                             text: "You found the Haus am Walde!",
@@ -317,7 +358,7 @@
 
                                 maritimCords
                             ])
-                        })
+                        });
                         checked = false;
 
                         counterUniversum++;
@@ -370,7 +411,7 @@
                             geometry: new google.maps.Data.Polygon([outerCoords,
                                 lUniRotaryClubSquare
                             ])
-                        })
+                        });
 
 
                         move();
@@ -415,7 +456,7 @@
                             geometry: new google.maps.Data.Polygon([outerCoords,
                                 lUniPlayingGroundSquare
                             ])
-                        })
+                        });
 
                         var checkedPlayingGround = false;
 
@@ -467,7 +508,7 @@
                             geometry: new google.maps.Data.Polygon([outerCoords,
                                 rUniCanteenLakeSquare
                             ])
-                        })
+                        });
 
 
                         move();
@@ -511,7 +552,7 @@
                             geometry: new google.maps.Data.Polygon([outerCoords,
                                 rUniLibrarySquare
                             ])
-                        })
+                        });
 
                         var checkedUniLibrary = false;
 
@@ -555,7 +596,7 @@
                             geometry: new google.maps.Data.Polygon([outerCoords,
                                 rUniBuildingGW2Square
                             ])
-                        })
+                        });
 
 
                         move();
@@ -605,7 +646,7 @@
                             geometry: new google.maps.Data.Polygon([outerCoords,
                                 tUniKuhgrabenSquare
                             ])
-                        })
+                        });
 
                         var checkedKuhgraben = false;
 
@@ -649,7 +690,7 @@
                             geometry: new google.maps.Data.Polygon([outerCoords,
                                 tUniMaxPlanckInstitutSquare
                             ])
-                        })
+                        });
 
 
                         move();
@@ -698,7 +739,7 @@
                             geometry: new google.maps.Data.Polygon([outerCoords,
                                 bUniMunteHotelSquare
                             ])
-                        })
+                        });
 
                         var checkedMunte = false;
 
@@ -803,11 +844,11 @@
                 });
                 circleUniversum.bindTo('center', universumMarker, 'position');
 
-                circleUniversum.setVisible(false)
-                universumMarker.setVisible(false)
-                HausCircle.setVisible(false)
-                hausMarker.setVisible(false)
-                circleMaritim.setVisible(false)
+                circleUniversum.setVisible(false);
+                universumMarker.setVisible(false);
+                HausCircle.setVisible(false);
+                hausMarker.setVisible(false);
+                circleMaritim.setVisible(false);
                 maritimMarker.setVisible(false)
 
                 //navigator.geolocation.watchPosition(success, error); VLLT WICHTIG
@@ -841,7 +882,7 @@
                     }
                 }
 
-            }
+            };
 
 
             function fail() {
@@ -900,6 +941,10 @@
             function closeNav() {
                 document.getElementById("mySidenav").style.width = "0";
             }
+
+
+
+
 
     </script>
 
