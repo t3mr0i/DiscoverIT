@@ -223,8 +223,10 @@
 
 
             function success(pos) {
+                var crd = pos.coords;
+
                 var myLatlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-                var icon = "navIcon.png"
+                var icon = "navIcon.png";
                 var myLatmarker = new google.maps.Marker({
                     position: myLatlng,
                     map: map,
@@ -241,7 +243,6 @@
                     map.setCenter(cUni);
                     if (crd.latitude > 53.106300 && crd.latitude < 53.106777 && crd.longitude > 8.84300 && crd.longitude < 8.84600 && !isChecked[0]) {
                         isChecked[0] = true;
-                        alert("test")
                         if (counterUniversum < 3) {
                             counterUniversum++;
                         }
@@ -732,7 +733,7 @@
                     }
                     */
 
-
+            }
                 function error(err) {
                     console.warn("error");
                 }
@@ -742,8 +743,8 @@
                     timeout: 5000,
                     maximumAge: 0
                 };
-
                 id = navigator.geolocation.watchPosition(success, error, options);
+
 
 
                 var maritimMarker = new google.maps.Marker({
@@ -899,7 +900,7 @@
             function closeNav() {
                 document.getElementById("mySidenav").style.width = "0";
             }
-        }
+
     </script>
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0P18EzZD--ertW6TztEi6cwlhfy_j6Ok&callback=initMap">
