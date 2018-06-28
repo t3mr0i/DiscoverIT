@@ -1,8 +1,51 @@
 @font-face {
     font-family: 'Verlag';
     /*a name to be used later*/
-    src: url(Verlag-Black.ttf');
+    src: url('Verlag-Black.ttf');
     /*URL to font*/
+}
+
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.slideout-menu {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 256px;
+    min-height: 100vh;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    z-index: 0;
+    display: none;
+}
+
+.slideout-menu-left {
+    left: 0;
+}
+
+.slideout-menu-right {
+    right: 0;
+}
+
+.slideout-panel {
+    position: relative;
+    z-index: 1;
+    will-change: transform;
+    background-color: #FFF; /* A background-color is required */
+    min-height: 100vh;
+}
+
+.slideout-open,
+.slideout-open body,
+.slideout-open .slideout-panel {
+    overflow: hidden;
+}
+
+.slideout-open .slideout-menu {
+    display: block;
 }
 
 .body {
@@ -60,7 +103,7 @@
     opacity: 1;
     font-family: 'Verlag', helvetica;
     /*a name to be used later*/
-    src: url(Verlag-Black.ttf');
+    src: url('Verlag-Black.ttf');
     /*URL to font*/
     margin-bottom: 10%;
     font-size: 30px;
@@ -144,7 +187,7 @@
     text-align: center;
     line-height: 100px;
     font-family: 'Verlag';
-    src: url(Verlag-Black.ttf');
+    src: url('Verlag-Black.ttf');
     color: black;
     font-size: 40px;
     margin: auto;
