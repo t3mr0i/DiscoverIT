@@ -35,6 +35,7 @@
             margin: 0;
             padding: 0;
         }
+
     </style>
 </head>
 
@@ -57,19 +58,21 @@
     <div id="map"></div>
 
 
-<script>
-    document.getElementById("knopf").onclick = function() {myFunction()};
+    <script>
+        document.getElementById("knopf").onclick = function() {
+            myFunction()
+        };
 
-    /* myFunction toggles between adding and removing the show class, which is used to hide and show the dropdown content */
-    function myFunction() {
-        swal({
+        /* myFunction toggles between adding and removing the show class, which is used to hide and show the dropdown content */
+        function myFunction() {
+            swal({
 
-            title: "Your Score: " + score ,
-            text: "You have found " + cSpots + " of 11 possible spots",
-            icon: "info",
-            button: "Go Hunting"
-        });
-    }
+                title: "Your Score: " + score,
+                text: "You have found " + cSpots + " of 11 possible spots",
+                icon: "info",
+                button: "Go Hunting"
+            });
+        }
         var prog = 0;
         var overlay;
         var gooMarker = [];
@@ -105,8 +108,8 @@
         // index 0 = universum, 1 = hausAmWalde, 2 = maritim, 3 = rotary, 4 = spielplatz, 5 = canteenLake, 6 = BuildingGW2,
         // 7 = library, 8 = kuhgraben, 9 = maxplanckinstitut, 10 = munte
         // check if spot already visited
-        var isChecked = [false,false,false,false,false,false,false,false,false,false,false];
-        var spotScores = [60,40,80,20,25,40,40,35,10,50,100];
+        var isChecked = [false, false, false, false, false, false, false, false, false, false, false];
+        var spotScores = [60, 40, 80, 20, 25, 40, 40, 35, 10, 50, 100];
         var markers = [];
 
         var im = 'you.png';
@@ -120,18 +123,18 @@
 
         var userMarker;
 
-        function fail(){
+        function fail() {
             alert('navigator.geolocation failed, may not be supported');
         }
 
         function initMap() {
 
 
-            navigator.geolocation.watchPosition(initialize,fail);
+            navigator.geolocation.watchPosition(initialize, fail);
 
             function initialize(position) {
 
-               var myLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                var myLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                 //markers.setMap(null);
                 if (!this.marker) {
                     this.marker = new google.maps.Marker({
@@ -140,8 +143,7 @@
                         icon: im
 
                     });
-                }
-                else {
+                } else {
                     this.marker.setPosition(myLatLng);
                 }
 
@@ -155,22 +157,22 @@
                 zoom: 17,
                 disableDefaultUI: true,
                 styles: [{
-                    "featureType": "all",
-                    "elementType": "all",
-                    "stylers": [{
-                        "saturation": "32"
+                        "featureType": "all",
+                        "elementType": "all",
+                        "stylers": [{
+                                "saturation": "32"
+                            },
+                            {
+                                "lightness": "-3"
+                            },
+                            {
+                                "visibility": "on"
+                            },
+                            {
+                                "weight": "1.18"
+                            }
+                        ]
                     },
-                        {
-                            "lightness": "-3"
-                        },
-                        {
-                            "visibility": "on"
-                        },
-                        {
-                            "weight": "1.18"
-                        }
-                    ]
-                },
                     {
                         "featureType": "administrative",
                         "elementType": "labels",
@@ -189,8 +191,8 @@
                         "featureType": "landscape.man_made",
                         "elementType": "all",
                         "stylers": [{
-                            "saturation": "-70"
-                        },
+                                "saturation": "-70"
+                            },
                             {
                                 "lightness": "14"
                             }
@@ -221,8 +223,8 @@
                         "featureType": "water",
                         "elementType": "all",
                         "stylers": [{
-                            "saturation": "100"
-                        },
+                                "saturation": "100"
+                            },
                             {
                                 "lightness": "-14"
                             }
@@ -232,8 +234,8 @@
                         "featureType": "water",
                         "elementType": "labels",
                         "stylers": [{
-                            "visibility": "off"
-                        },
+                                "visibility": "off"
+                            },
                             {
                                 "lightness": "12"
                             }
@@ -298,8 +300,13 @@
 
                 /* ------------------ ------------------ map spot CENTER uni ------------------ ------------------*/
                 if (crd.latitude > 53.104839 && crd.latitude < 53.108330 && crd.longitude > 8.838121 && crd.longitude < 8.849037) {
-                    map.setCenter(cUni);
+                    map.setCenterl(lUni);
 
+                    var nw = new google.maps.LatLngBounds( {lat: 53.108330, lng: 8.838121});
+                    var sw = new google.maps.LatLngBounds( {lat: 53.104839, lng: 8.827205});
+                    google.maps.event.addListenerOnce(map, 'idle', function() {
+                        map.fitBounds(nw, sw, 0);
+                    });
                     if (crd.latitude > 53.106300 && crd.latitude < 53.106777 && crd.longitude > 8.84300 && crd.longitude < 8.84600 && !isChecked[0]) {
                         isChecked[0] = true;
                         cSpots++;
@@ -322,11 +329,11 @@
 
                         swal({
 
-                            title: "CONGRATS!",
-                            text: `You find the universum, you have now found ${counterUniversum} out of 3 spots`,
-                            icon: "success",
-                            buttons: true,
-                        })
+                                title: "CONGRATS!",
+                                text: `You find the universum, you have now found ${counterUniversum} out of 3 spots`,
+                                icon: "success",
+                                buttons: true,
+                            })
                             .then((willDelete) => {
                                 if (willDelete) {
                                     swal("The museum is designed like a whale. The windows should represent its teeths. We granted you 60 points!", {
@@ -348,11 +355,11 @@
 
                         console.log("ich war in Haus");
                         swal({
-                            title: "CONGRATS!",
-                            text: "You found the Haus am Walde!",
-                            icon: "success",
-                            buttons: true,
-                        })
+                                title: "CONGRATS!",
+                                text: "You found the Haus am Walde!",
+                                icon: "success",
+                                buttons: true,
+                            })
                             .then((willDelete) => {
                                 if (willDelete) {
 
@@ -389,11 +396,11 @@
                         console.log("ich war in Leibniz");
 
                         swal({
-                            title: "CONGRATS!",
-                            text: "You found the Leibniz Centre for Marine Tropical Research!",
-                            icon: "success",
-                            buttons: true,
-                        })
+                                title: "CONGRATS!",
+                                text: "You found the Leibniz Centre for Marine Tropical Research!",
+                                icon: "success",
+                                buttons: true,
+                            })
                             .then((willDelete) => {
                                 if (willDelete) {
 
@@ -449,11 +456,11 @@
 
                         swal({
 
-                            title: "CONGRATS!",
-                            text: `You found the Rotary Club, you have now found ${counterlUni} out of 2 spots`,
-                            icon: "success",
-                            buttons: true,
-                        })
+                                title: "CONGRATS!",
+                                text: `You found the Rotary Club, you have now found ${counterlUni} out of 2 spots`,
+                                icon: "success",
+                                buttons: true,
+                            })
                             .then((willDelete) => {
                                 if (willDelete) {
                                     swal("Rotary International is an international service organization whose stated purpose is to bring together business and professional leaders in order to provide humanitarian services, encourage high ethical standards in all vocations, and to advance goodwill and peace around the world.", {
@@ -493,11 +500,11 @@
 
                         swal({
 
-                            title: "CONGRATS!",
-                            text: `You found the Playing Ground, you have now found ${counterlUni} out of 2 spots`,
-                            icon: "success",
-                            buttons: true,
-                        })
+                                title: "CONGRATS!",
+                                text: `You found the Playing Ground, you have now found ${counterlUni} out of 2 spots`,
+                                icon: "success",
+                                buttons: true,
+                            })
                             .then((willDelete) => {
                                 if (willDelete) {
                                     swal("Kids love going here. Having adventures and just play.", {
@@ -548,11 +555,11 @@
 
                         swal({
 
-                            title: "CONGRATS!",
-                            text: `You found the Canteen Lake, you have now found ${counterlUni} out of 3 spots`,
-                            icon: "success",
-                            buttons: true,
-                        })
+                                title: "CONGRATS!",
+                                text: `You found the Canteen Lake, you have now found ${counterlUni} out of 3 spots`,
+                                icon: "success",
+                                buttons: true,
+                            })
                             .then((willDelete) => {
                                 if (willDelete) {
                                     swal("Here students spend some time, instead of joining the lectures.", {
@@ -590,11 +597,11 @@
 
                         swal({
 
-                            title: "CONGRATS!",
-                            text: `You found the Library of the University of Bremen, you have now found ${counterlUni} out of 3 spots`,
-                            icon: "success",
-                            buttons: true,
-                        })
+                                title: "CONGRATS!",
+                                text: `You found the Library of the University of Bremen, you have now found ${counterlUni} out of 3 spots`,
+                                icon: "success",
+                                buttons: true,
+                            })
                             .then((willDelete) => {
                                 if (willDelete) {
                                     swal("Students prepare themselves for exams and get some books here", {
@@ -631,11 +638,11 @@
 
                         swal({
 
-                            title: "CONGRATS!",
-                            text: `You found the Building GW2 from the University, you have now found ${counterlUni} out of 3 spots`,
-                            icon: "success",
-                            buttons: true,
-                        })
+                                title: "CONGRATS!",
+                                text: `You found the Building GW2 from the University, you have now found ${counterlUni} out of 3 spots`,
+                                icon: "success",
+                                buttons: true,
+                            })
                             .then((willDelete) => {
                                 if (willDelete) {
                                     swal("The maze of the University of Bremen.", {
@@ -685,11 +692,11 @@
 
                         swal({
 
-                            title: "CONGRATS!",
-                            text: `You found the Kuhgraben, you have now found ${counterTUni} out of 2 spots`,
-                            icon: "success",
-                            buttons: true,
-                        })
+                                title: "CONGRATS!",
+                                text: `You found the Kuhgraben, you have now found ${counterTUni} out of 2 spots`,
+                                icon: "success",
+                                buttons: true,
+                            })
                             .then((willDelete) => {
                                 if (willDelete) {
                                     swal("Kuhgraben.", {
@@ -727,11 +734,11 @@
 
                         swal({
 
-                            title: "CONGRATS!",
-                            text: `You found the Max Planck Institut, you have now found ${counterTUni} out of 2 spots`,
-                            icon: "success",
-                            buttons: true,
-                        })
+                                title: "CONGRATS!",
+                                text: `You found the Max Planck Institut, you have now found ${counterTUni} out of 2 spots`,
+                                icon: "success",
+                                buttons: true,
+                            })
                             .then((willDelete) => {
                                 if (willDelete) {
                                     swal("Max Planck Institut.", {
@@ -784,11 +791,11 @@
 
                         swal({
 
-                            title: "CONGRATS!",
-                            text: `You found the Hotel Munte, you have now found ${counterBUni} out of 1 spots`,
-                            icon: "success",
-                            buttons: true,
-                        })
+                                title: "CONGRATS!",
+                                text: `You found the Hotel Munte, you have now found ${counterBUni} out of 1 spots`,
+                                icon: "success",
+                                buttons: true,
+                            })
                             .then((willDelete) => {
                                 if (willDelete) {
                                     swal("The famous Hotel Munte.", {
@@ -825,120 +832,121 @@
 
 
             }
-                function error(err) {
-                    console.warn("error");
-                }
 
-                options = {
-                    enableHighAccuracy: false,
-                    timeout: 5000,
-                    maximumAge: 0
-                };
-                id = navigator.geolocation.watchPosition(success, error, options);
-
-
-
-                var maritimMarker = new google.maps.Marker({
-                    position: maritim,
-
-                    map: map
-                });
-                var circleMaritim = new google.maps.Circle({
-                    map: map,
-                    radius: 100, // 10 miles in metres
-                    fillColor: '#AA0000',
-                    strokeColor: '#FF0000',
-                    strokeOpacity: 0.001,
-                    strokeWeight: 2,
-                    fillColor: 'green',
-                    fillOpacity: 0.1,
-                });
-                circleMaritim.bindTo('center', maritimMarker, 'position');
-
-                // HAUS
-
-
-                hausMarker = new google.maps.Marker({
-                    position: haus,
-
-                    map: map
-                });
-                var HausCircle = new google.maps.Circle({
-                    map: map,
-                    radius: 100, // 10 miles in metres
-                    fillColor: '#AA0000',
-                    strokeColor: '#FF0000',
-                    strokeOpacity: 0.001,
-                    strokeWeight: 2,
-                    fillColor: 'green',
-                    fillOpacity: 0.1,
-                });
-                HausCircle.bindTo('center', hausMarker, 'position');
-                // universum
-
-                universumMarker = new google.maps.Marker({
-                    position: universum,
-                    map: map
-                });
-
-
-                var circleUniversum = new google.maps.Circle({
-                    map: map,
-                    radius: 100, // 10 miles in metres
-                    fillColor: '#AA0000',
-                    strokeColor: '#FF0000',
-                    strokeOpacity: 0.001,
-                    strokeWeight: 2,
-                    fillColor: 'green',
-                    fillOpacity: 0.1,
-                });
-                circleUniversum.bindTo('center', universumMarker, 'position');
-
-                circleUniversum.setVisible(false);
-                universumMarker.setVisible(false);
-                HausCircle.setVisible(false);
-                hausMarker.setVisible(false);
-                circleMaritim.setVisible(false);
-                maritimMarker.setVisible(false)
-
-                //navigator.geolocation.watchPosition(success, error); VLLT WICHTIG
-
-                // var posi = navigator.geolocation.watchPosition(success);
-
-
+            function error(err) {
+                console.warn("error");
             }
 
-
-            function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-                infoWindow.setPosition(pos);
-                infoWindow.setContent(browserHasGeolocation ?
-                    'Error: The Geolocation service failed.' :
-                    'Error: Your browser doesn\'t support geolocation.');
-            }
-
-
-            move = function () {
-                if (prog < 67) {
-                    var elem = document.getElementById("myBar");
-                    var width = 0;
-                    var id = setInterval(frame, 10);
-                    prog = prog + 33;
-                    elem.style.width = prog + '%';
-                    document.getElementById("demo").innerHTML = prog;
-
-                    function frame() {
-
-
-                    }
-                }
-
+            options = {
+                enableHighAccuracy: false,
+                timeout: 5000,
+                maximumAge: 0
             };
+            id = navigator.geolocation.watchPosition(success, error, options);
 
 
-            
 
-            // Construct the circle for each value in citymap. We scale population by 20.
-            /*var populationOptions = {
+            var maritimMarker = new google.maps.Marker({
+                position: maritim,
+
+                map: map
+            });
+            var circleMaritim = new google.maps.Circle({
+                map: map,
+                radius: 100, // 10 miles in metres
+                fillColor: '#AA0000',
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.001,
+                strokeWeight: 2,
+                fillColor: 'green',
+                fillOpacity: 0.1,
+            });
+            circleMaritim.bindTo('center', maritimMarker, 'position');
+
+            // HAUS
+
+
+            hausMarker = new google.maps.Marker({
+                position: haus,
+
+                map: map
+            });
+            var HausCircle = new google.maps.Circle({
+                map: map,
+                radius: 100, // 10 miles in metres
+                fillColor: '#AA0000',
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.001,
+                strokeWeight: 2,
+                fillColor: 'green',
+                fillOpacity: 0.1,
+            });
+            HausCircle.bindTo('center', hausMarker, 'position');
+            // universum
+
+            universumMarker = new google.maps.Marker({
+                position: universum,
+                map: map
+            });
+
+
+            var circleUniversum = new google.maps.Circle({
+                map: map,
+                radius: 100, // 10 miles in metres
+                fillColor: '#AA0000',
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.001,
+                strokeWeight: 2,
+                fillColor: 'green',
+                fillOpacity: 0.1,
+            });
+            circleUniversum.bindTo('center', universumMarker, 'position');
+
+            circleUniversum.setVisible(false);
+            universumMarker.setVisible(false);
+            HausCircle.setVisible(false);
+            hausMarker.setVisible(false);
+            circleMaritim.setVisible(false);
+            maritimMarker.setVisible(false)
+
+            //navigator.geolocation.watchPosition(success, error); VLLT WICHTIG
+
+            // var posi = navigator.geolocation.watchPosition(success);
+
+
+        }
+
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                'Error: The Geolocation service failed.' :
+                'Error: Your browser doesn\'t support geolocation.');
+        }
+
+
+        move = function() {
+            if (prog < 67) {
+                var elem = document.getElementById("myBar");
+                var width = 0;
+                var id = setInterval(frame, 10);
+                prog = prog + 33;
+                elem.style.width = prog + '%';
+                document.getElementById("demo").innerHTML = prog;
+
+                function frame() {
+
+
+                }
+            }
+
+        };
+
+
+
+
+        // Construct the circle for each value in citymap. We scale population by 20.
+        /*var populationOptions = {
                             paths: [outerCoords, cityCircle],
 
                             strokeColor: 'blue',
@@ -980,23 +988,21 @@
                         cutOut.setMap(map);
 */
 
-            /* Set the width of the side navigation to 250px */
-            function openNav() {
-                document.getElementById("mySidenav").style.width = "250px";
-            }
+        /* Set the width of the side navigation to 250px */
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
 
-            /* Set the width of the side navigation to 0 */
-            function closeNav() {
-                document.getElementById("mySidenav").style.width = "0";
-            }
-
-
-
-
+        /* Set the width of the side navigation to 0 */
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
 
     </script>
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0P18EzZD--ertW6TztEi6cwlhfy_j6Ok&callback=initMap">
+
+
     </script>
 
     <script src="alertify.js"></script>
