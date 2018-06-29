@@ -75,6 +75,14 @@
             button: "Go Hunting"
         });
     }
+    var inCUni = false;
+    var inLUni = false;
+    var inRUni = false;
+    var inTUni = false;
+    var inBUni = false;
+
+
+
 
     var prog = 0;
     var overlay;
@@ -152,7 +160,7 @@
         }
 
         document.getElementById('spotcounter').innerHTML = "You found " + counterCUni + " out of 3 Spots!";
-        document.getElementById('spotcounter').innerHTML = "There is no spot to find nearby";
+        document.getElementById('spotcounter').innerHTML = "There is no spot nearby";
 
         var map = new google.maps.Map(document.getElementById('map'), {
             center: universum,
@@ -275,7 +283,7 @@
             map: map
         });
 
-        // MARITIM
+        //wenn location gefunden
 
 
         function success(pos) {
@@ -303,7 +311,12 @@
             /* ------------------ ------------------ map spot CENTER uni ------------------ ------------------*/
             if (crd.latitude > 53.104839 && crd.latitude < 53.108330 && crd.longitude > 8.838121 && crd.longitude < 8.849037) {
                 map.setCenter(cUni);
-                document.getElementById('spotcounter').innerHTML = "cUni: You found " + counterCUni + " out of 3";
+                 inCUni = true;
+                 inLUni = false;
+                 inRUni = false;
+                 inTUni = false;
+                 inBUni = false;
+                document.getElementById('spotcounter').innerHTML = "Universität/Universum: You found " + counterCUni + " out of 3";
                 /*
                 var nw = new google.maps.LatLngBounds({lat: 53.108330, lng: 8.838121});
                 var sw = new google.maps.LatLngBounds({lat: 53.104839, lng: 8.827205});
@@ -311,13 +324,15 @@
                     map.fitBounds(nw, sw, 0);
                 });
                 */
-                if (crd.latitude > 53.106300 && crd.latitude < 53.106777 && crd.longitude > 8.84300 && crd.longitude < 8.84600 && !isChecked[0]) {
+                if (crd.latitude >53.106381  && crd.latitude <  53.107051 && crd.longitude > 8.844370 && crd.longitude < 8.845345 && !isChecked[0]) {
+                alert("univerusm");
                     isChecked[0] = true;
                     cSpots++;
                     if (counterCUni < 3) {
                         counterCUni++;
+                        prog++;
                     }
-                    move();
+                    move(counterCUni);
 
                     map.data.add({
                         geometry: new google.maps.Data.Polygon([outerCoords,
@@ -332,17 +347,17 @@
 
                     swal({
                         title: "CONGRATS!",
-                        text: `You find the universum, you have now found ${counterCUni} out of 3 spots`,
+                        text: "You found the Universum, you have now found" + counterCUni + "out of 3 spots",
                         icon: "success",
                         buttons: true,
                     })
                         .then((willDelete) => {
                             if (willDelete) {
-                                swal("The museum is designed like a whale. The windows should represent its teeths. We granted you 60 points!", {
+                                swal("The museum is designed like a whale. The windows should represent its teeths. " +  "  We granted you 60 points!", {
                                     icon: imageURL,
                                 });
                             } else {
-                                swal(`We granted you 60 points! You found" + ${counterCUni} + "/3 spots in this area already`);
+                                swal("We granted you 60 points! You found" + counterCUni + "/3 spots in this area already");
 
                             }
                         });
@@ -353,9 +368,16 @@
                     cSpots++;
                     if (counterCUni < 3) {
                         counterCUni++;
+                        prog++;
                     }
-                    move();
+                    move(counterCUni);
+                    map.data.add({
+                        geometry: new google.maps.Data.Polygon([outerCoords,
 
+                            HausAmWaldeCords
+                        ])
+
+                    });
                     swal({
                         title: "CONGRATS!",
                         text: "You found the Haus am Walde!",
@@ -367,13 +389,14 @@
 
 
                                 swal("Norddeutsche und internationale Küche, Frühstück und selbstgebackener Kuchen im Backsteinhaus mit Biergarten.", {
-                                    icon: haus,
+                                    icon: imageURLHaus,
                                 });
                             } else {
                                 swal("We granted you 40 points! You found " + counter + " /3 spots in this area already");
 
                             }
                         });
+
                     //navigator.geolocation.clearWatch(id);
                     score += spotScores[1];
                 }
@@ -384,11 +407,11 @@
                     cSpots++;
                     if (counterCUni < 3) {
                         counterCUni++;
+                        prog++;
                     }
-                     move();
+                     move(counterCUni);
                     map.data.add({
                         geometry: new google.maps.Data.Polygon([outerCoords,
-
                             maritimCords
                         ])
 
@@ -417,10 +440,24 @@
                     navigator.geolocation.clearWatch(id);
                     score += spotScores[2];
                 }
-                document.getElementById('spotcounter').innerHTML = "cUni You found " + counterCUni + " out of 3";
+                document.getElementById('spotcounter').innerHTML = "Universität/Universum:" +'<br>' + "You found "  + counterCUni + " out of 3";
                 if (counterCUni == 3) {
                     document.getElementById('spotcounter').innerHTML = "Congrats, you found all the spots on this map";
-
+                    map.data.remove({
+                        geometry: new google.maps.Data.Polygon([outerCoords,
+                            HausAmWaldeCords
+                        ])
+                    });
+                    map.data.remove({
+                        geometry: new google.maps.Data.Polygon([outerCoords,
+                            universumCords
+                        ])
+                    });
+                    map.data.remove({
+                        geometry: new google.maps.Data.Polygon([outerCoords,
+                            maritimCords
+                        ])
+                    });
                     map.data.add({
                         geometry: new google.maps.Data.Polygon([outerCoords,
                             cUniSquare
@@ -434,6 +471,11 @@
 
             /* ------------------ ------------------ map spot left uni ------------------ ------------------*/
             if (crd.latitude > 53.104839 && crd.latitude < 53.108330 && crd.longitude > 8.827205 && crd.longitude < 8.838121) {
+                var inCUni = false;
+                var inLUni = true;
+                var inRUni = false;
+                var inTUni = false;
+                var inBUni = false;
                 map.setCenter(lUni);
                 document.getElementById('spotcounter').innerHTML = "lUni You found " + counterLUni + " out of 2";
 
@@ -458,7 +500,7 @@
                     swal({
 
                         title: "CONGRATS!",
-                        text: `You found the Rotary Club, you have now found ${counterLUni} out of 2 spots`,
+                        text: "You found the Rotary Club, you have now found "+ counterLUni + " out of 2 spots",
                         icon: "success",
                         buttons: true,
                     })
@@ -468,7 +510,7 @@
                                     icon: rotaryImg,
                                 });
                             } else {
-                                swal('We granted you 20 points! You found ${counterUni} /2 spots in this area already');
+                                swal('We granted you 20 points! You found' + counterLUni + "/2 spots in this area already");
 
                             }
                         });
@@ -495,7 +537,7 @@
                     swal({
 
                         title: "CONGRATS!",
-                        text: `You found the Playing Ground, you have now found ${counterLUni} out of 2 spots`,
+                        text: "You found the Playing Ground, you have now found "+counterLLUni+  " out of 2 spots",
                         icon: "success",
                         buttons: true,
                     })
@@ -505,7 +547,7 @@
                                     icon: spielPLatzIMG,
                                 });
                             } else {
-                                swal('We granted you 25 points! You found ${counterUni} /2 spots in this area already');
+                                swal('We granted you 25 points! You found' + counterLUni +' 2 spots in this area already');
 
                             }
                         });
@@ -526,8 +568,13 @@
 
             /* ------------------ ------------------ map spot right uni ------------------ ------------------*/
             if (crd.latitude > 53.104839 && crd.latitude < 53.108330 && crd.longitude > 8.849037 && crd.longitude < 8.859953) {
+                var inCUni = false;
+                var inLUni = false;
+                var inRUni = true;
+                var inTUni = false;
+                var inBUni = false;
                 map.setCenter(rUni);
-                document.getElementById('spotcounter').innerHTML = "rUni You found " + counterRUni + " out of 3";
+                document.getElementById('spotcounter').innerHTML = "Universität:" +'<br>' + "You found " + counterRUni + " out of 3";
 
                 if (crd.latitude > 53.107573 && crd.latitude < 53.107817 && crd.longitude > 8.850052 && crd.longitude < 8.851501 && !isChecked[5]) {
                     isChecked[5] = true;
@@ -550,7 +597,7 @@
                     swal({
 
                         title: "CONGRATS!",
-                        text: `You found the Canteen Lake, you have now found ${counterlUni} out of 3 spots`,
+                        text: `You found the Canteen Lake, you have now found ${counterLUni} out of 3 spots`,
                         icon: "success",
                         buttons: true,
                     })
@@ -560,7 +607,7 @@
                                     icon: canteenLake,
                                 });
                             } else {
-                                swal('We granted you 40 points! You found ${counterUni} /3 spots in this area already');
+                                swal('We granted you 40 points! You found ' + counterLUni +'/3 spots in this area already');
                             }
                         });
                     score += spotScores[5];
@@ -589,7 +636,7 @@
                     swal({
 
                         title: "CONGRATS!",
-                        text: `You found the Library of the University of Bremen, you have now found ${counterlUni} out of 3 spots`,
+                        text: "You found the Library of the University of Bremen, you have now found " + counterLUni+ " out of 3 spots",
                         icon: "success",
                         buttons: true,
                     })
@@ -599,7 +646,7 @@
                                     icon: UniLibrary,
                                 });
                             } else {
-                                swal('We granted you 40 points! You found ${counterUni} /3 spots in this area already');
+                                swal('We granted you 40 points! You found' + counterUni +' /3 spots in this area already');
                             }
                         });
                     score += spotScores[6];
@@ -628,7 +675,7 @@
                     swal({
 
                         title: "CONGRATS!",
-                        text: `You found the Building GW2 from the University, you have now found ${counterlUni} out of 3 spots`,
+                        text: "You found the Building GW2 from the University, you have now found" +counterlUni +" out of 3 spots",
                         icon: "success",
                         buttons: true,
                     })
@@ -638,12 +685,12 @@
                                     icon: BuildingGW2,
                                 });
                             } else {
-                                swal('We granted you 35 points! You found ${counterUni} /3 spots in this area already');
+                                swal('We granted you 35 points! You found ' +counterUni + '/3 spots in this area already');
                             }
                         });
                     score += spotScores[7];
                 }
-                document.getElementById('spotcounter').innerHTML = "rUni You found " + counterRUni + " out of 3";
+                document.getElementById('spotcounter').innerHTML = "Universität Ost:" + '<br>' + "You found " + counterRUni + " out of 3";
                 if (counterRUni == 3) {
                     document.getElementById('spotcounter').innerHTML = "Congrats, you found all the spots on this map";
                     map.data.add({
@@ -657,6 +704,11 @@
 
             /* ------------------ ------------------ map spot top uni ------------------ ------------------*/
             if (crd.latitude > 53.108330 && crd.latitude < 53.111821 && crd.longitude > 8.838121 && crd.longitude < 8.849037) {
+                var inCUni = false;
+                var inLUni = false;
+                var inRUni = false;
+                var inTUni = true;
+                var inBUni = false;
                 map.setCenter(tUni);
                 document.getElementById('spotcounter').innerHTML = "tUni You found " + counterTUni + " out of 2";
 
@@ -692,7 +744,7 @@
                                     icon: kuhgraben,
                                 });
                             } else {
-                                swal('We granted you 10 points! You found ${counterTUni} /2 spots in this area already');
+                                swal('We granted you 10 points! You found' + counterTUni + '/2 spots in this area already');
                             }
                         });
                     score += spotScores[8];
@@ -733,7 +785,7 @@
                                     icon: maxPlanckInstitut,
                                 });
                             } else {
-                                swal('We granted you 50 points! You found ${counterTUni} /2 spots in this area already');
+                                swal('We granted you 50 points! You found' + counterTUni + '/2 spots in this area already');
                             }
                         });
                     score += spotScores[9];
@@ -754,8 +806,13 @@
 
             /* ------------------ ------------------ map spot bottom uni ------------------ ------------------*/
             if (crd.latitude > 53.101348 && crd.latitude < 53.104839 && crd.longitude > 8.838121 && crd.longitude < 8.849037) {
+                var inCUni = false;
+                var inLUni = false;
+                var inRUni = false;
+                var inTUni = false;
+                var inBUni = true;
                 map.setCenter(bUni);
-                document.getElementById('spotcounter').innerHTML = "bUni You found " + counterBUni + " out of 1";
+                document.getElementById('spotcounter').innerHTML = 'Universität Zufahrt:' +'<br>' + "You found " + counterBUni + " out of 1";
 
                 if (crd.latitude > 53.104136 && crd.latitude < 53.104526 && crd.longitude > 8.840827 && crd.longitude < 8.841455 && !isChecked[10]) {
                     isChecked[10] = true;
@@ -806,12 +863,6 @@
             }
             /* ------------------ ------------------ map spot bottom uni ------------------ ------------------*/
 
-            /* WHAT IS THIS???
-                // this is center = universum
-                if (crd.latitude > 53.105341 && crd.latitude < 53.105895 && crd.longitude > 8.849484 && crd.longitude < 8.850064) {
-                    navigator.geolocation.clearWatch(id);
-                }
-                */
 
 
         }
@@ -875,7 +926,6 @@
         var circleUniversum = new google.maps.Circle({
             map: map,
             radius: 100, // 10 miles in metres
-            fillColor: '#AA0000',
             strokeColor: '#FF0000',
             strokeOpacity: 0.001,
             strokeWeight: 2,
@@ -906,21 +956,70 @@
             'Error: Your browser doesn\'t support geolocation.');
     }
 
-
+    var inCUni = false;
+    var inLUni = false;
+    var inRUni = false;
+    var inTUni = false;
+    var inBUni = false;
     move = function () {
-        if (prog < 67) {
-            var elem = document.getElementById("myBar");
-            var width = 0;
-            var id = setInterval(frame, 10);
-            prog = prog + 33;
-            elem.style.width = prog + '%';
-            document.getElementById("demo").innerHTML = prog;
+if(prog > 0) {
 
-            function frame() {
+    var id = setInterval(frame, 10);
+    if (counterLUni == 0)
+        if (inLUni) {
+            prog = 0;
 
-
-            }
         }
+}
+
+    if (counterLUni == 1 ) {
+        if (inLUni) {
+            prog = 50;
+
+        }
+    }
+    if (counterLUni == 2 ) {
+        if (inLUni) {
+            prog = 100;
+
+        }
+    }
+    if (counterCUni == 0 ) {
+
+            prog = 0;
+
+
+    }
+
+    if (counterCUni == 1 ) {
+
+            prog = 33;
+
+
+
+    }
+    if (counterCUni == 2) {
+
+
+            prog = 66;
+
+    }
+
+    if (counterCUni == 3) {
+
+            prog = 100;
+
+
+    }
+
+        var elem = document.getElementById("myBar");
+        var width = 0;
+    elem.style.width = prog + '%';
+    document.getElementById("demo").innerHTML = prog;
+
+    function frame() {
+
+    }
 
     };
 

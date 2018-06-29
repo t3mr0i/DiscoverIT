@@ -100,7 +100,25 @@ var universumCords = [{
         lng: 8.845561
     },
 ];
+var HausAmWaldeCords = [
+    {
+        lat: 53.107,
+        lng: 8.84
+    },
+    {
+        lat: 53.107,
+        lng: 8.841902
+    },
+    {
+        lat: 53.106445,
+        lng: 8.841902
+    },
+    {
 
+    lat: 53.106445,
+    lng: 8.84
+}
+];
 
 var maritimCords = [{
 
@@ -113,16 +131,16 @@ var maritimCords = [{
     },
 
     {
-        lat: 53.107772,
+        lat: 53.107797,
         lng: 8.845625
     },
     {
-        lat: 53.107015,
+        lat: 53.106934,
         lng: 8.845625
     },
 ];
 
-//Haus Am Walde missing?
+
 
 /** lUni spot square **/
 var lUniRotaryClubSquare = [{
