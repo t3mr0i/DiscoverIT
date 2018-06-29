@@ -4,10 +4,15 @@
 <head>
 
     <title>DiscoverIT</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name = "viewport" content = "width = device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <!-- include the core styles -->
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="styleNEU.css"/>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
@@ -325,7 +330,6 @@
                 });
                 */
                 if (crd.latitude >53.106381  && crd.latitude <  53.107051 && crd.longitude > 8.844370 && crd.longitude < 8.845345 && !isChecked[0]) {
-                alert("univerusm");
                     isChecked[0] = true;
                     cSpots++;
                     if (counterCUni < 3) {
@@ -346,8 +350,9 @@
 
 
                     swal({
-                        title: "CONGRATS!",
-                        text: "You found the Universum, you have now found" + counterCUni + "out of 3 spots",
+                        html: true,
+                        title: "You found the Universum",
+                        text: "You have now found " + counterCUni + " out of 3 spots",
                         icon: "success",
                         buttons: true,
                     })

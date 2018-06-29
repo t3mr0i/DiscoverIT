@@ -385,6 +385,8 @@ body {
     font-family: 'Verlag', helvetica;
     src: url('Verlag-Black.ttf');
 
+
+
     background-color: #FEFAE3;
     padding: 17px;
     border: 1px solid #F0E1A1;
@@ -392,4 +394,5 @@ body {
     margin: 22px;
     text-align: center;
     color: #61534e;
+
 }
